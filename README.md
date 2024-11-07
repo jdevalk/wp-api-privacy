@@ -17,7 +17,7 @@ You can install the package either via a ZIP file, or by using composer.
 
 ### ZIP File
 
-Navigate to the "Releases" [section in the sidebar](https://github.com/wp-privacy/wp-api-privacy/releases), and click on the latest release.  Inside the release you will see a ZIP file that looks like 
+Navigate to the "Releases" [section in the sidebar](https://github.com/wp-privacy/wp-api-privacy/releases/latest), and click on the latest release.  Inside the release you will see a ZIP file that looks like 
 *wp-api-privacy-1.x.x.zip*.  Simply download that file and then use the WordPress plugin installer in the admin panel to add it.
 
 ### Composer
