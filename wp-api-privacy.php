@@ -16,7 +16,7 @@
 
 namespace WP_Privacy\WP_API_Privacy;
 
-define( 'PRIVACY_VERSION', '0.0.5' );
+define( 'PRIVACY_VERSION', '0.0.4' );
 
 require_once( dirname( __FILE__ ) . '/src/api-privacy.php' );
 

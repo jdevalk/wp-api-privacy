@@ -176,8 +176,13 @@ class GitHubUpdater {
                         $this->updateInfo->changeLog = $this->generateChangeLog( $releaseInfo );
 
                         $this->updateInfo->version = $latestVersion;
-                        $this->updateInfo->updateUrl = $release->zipball_url;
 
+                        if ( isset( $release->assets ) && isset( $release->assets[ 0 ]->browser_download_url ) ) {
+                            $this->updateInfo->updateUrl = $release->assets[ 0 ]->browser_download_url;
+                        }
+
+                        print_r( $this->updateInfo ); die;
+                        
                         break;
                     }
                 }           
