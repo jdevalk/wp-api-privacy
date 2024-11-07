@@ -14,7 +14,9 @@ class ApiPrivacy {
     public function init() {
         add_filter( 'http_request_args', array( $this, 'modifyUserAgent' ), 0 );
         
-        $this->_checkForUpdate();
+        if ( current_user_can( 'update_plugins' ) ) {
+            $this->_checkForUpdate();
+        }
     }
 
     public function modifyUserAgent( $params ) {
@@ -25,6 +27,20 @@ class ApiPrivacy {
         return $params;
     }
 
+    private function _getHeaderInfo() {
+        $result = wp_remote_get( 'https://raw.githubusercontent.com/wp-privacy/wp-api-privacy/refs/heads/main/wp-api-privacy.php' );
+        if( $result ) {
+            if ( !is_wp_error( $result ) ) {
+                $body = wp_remote_retrieve_body( $result );
+                if ( $body ) {
+                    if ( preg_match_all( '#[\s]+(.*): (.*)#', $body, $matches ) ) {
+                        print_r( $matches ); die;
+                    }
+                }
+            }
+        }
+    }
+
     private function _checkForUpdate() {
         $githubTagData = get_transient( ApiPrivacy::GITHUB_TAG_CACHE_KEY );
         if ( !$githubTagData ) {
@@ -32,13 +48,17 @@ class ApiPrivacy {
             if ( !is_wp_error( $result ) ) {
                 $githubTagData = json_decode( wp_remote_retrieve_body( $result ) );
                
-                set_transient( ApiPrivacy::GITHUB_TAG_CACHE_KEY, $githubTagData, ApiPrivacy::CACHE_TIME );
+                if ( $githubTagData ) {
+                    set_transient( ApiPrivacy::GITHUB_TAG_CACHE_KEY, $githubTagData, ApiPrivacy::CACHE_TIME );
+                }
             } 
         }
 
         if ( $githubTagData ) {
             // We have a list of releases
         }
+
+        $this->_getHeaderInfo();
     }
 
     static function instance() {

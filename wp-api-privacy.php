@@ -5,6 +5,10 @@
     Description: This plugin strips potentially identifying information from outbound requests to the WordPress.org API
     Author: Duane Storey
     Author URI: https://duanestorey.com
+    Stable: 0.0.1
+    Requires PHP: 6.0
+    Requires at least: 6.0
+    Update URI: https://github.com/wpprivacy/wp-api-privacy
 */
 
 namespace WP_Privacy\WP_API_Privacy;
