@@ -1,14 +1,15 @@
 # WP API Privacy
 
-The default WordPress installation from wordpress.org automatically transmits personal information such as your website name via API various API calls in the admin.  
+The default WordPress installation from wordpress.org automatically transmits personal information such as your website name via various HTTP calls that occur the admin.  
 
 The current information we've found includes:
 - The full public URL for your website (i.e. http://mysite.com)
 - The version number of your WordPress installation
 
-Combining this information with your IP address (which all servers can determine from incoming requests), provides WordPress.org with potentially intrusive insight into every website using WordPress.  
+Combining this information with your IP address (which all servers can determine from incoming requests), provides the recipient with potentially intrusive insight into every website using the WordPress platform. 
 
-This plugin seeks to limit that information, protecting your privacy in the process. Simply install this plugin and activate it, and your website URL and WordPress version number will be stripped from outgoing API requests from your website.
+This plugin seeks to limit that information, attempting to further protect your privacy in the process. Simply install this plugin and activate it, and your website URL and WordPress version number will be stripped from outgoing API requests from your website.  Some API calls, such as the ones to the plugin listings, also contain a version parameter to filter 
+the associated list of plugins - these are left in (but your website URL is still stripped).
 
 ## Installation
 
