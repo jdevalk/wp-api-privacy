@@ -15,6 +15,9 @@ class ApiPrivacy extends GithubUpdater {
     private static $instance = null;
 
     protected function __construct() {
+        // set up our user-agent filter
+        add_filter( 'http_request_args', array( $this, 'modifyUserAgent' ), 0 );
+
         // initialize the updater
         parent::__construct( 
             'wp-api-privacy/wp-api-privacy.php',
@@ -25,9 +28,7 @@ class ApiPrivacy extends GithubUpdater {
     }
 
     public function init() {
-        // set up our user-agent filter
-        add_filter( 'http_request_args', array( $this, 'modifyUserAgent' ), 0 );
-
+        // for the future
     }
 
     public function modifyUserAgent( $params ) {
