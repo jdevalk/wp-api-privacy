@@ -10,3 +10,20 @@ Combining this information with your IP address (which all servers can determine
 
 This plugin seeks to limit that information, protecting your privacy in the process. Simply install this plugin and activate it, and your website URL and WordPress version number will be stripped from outgoing API requests from your website.
 
+## Installation
+
+You can install the package either via a ZIP file, or by using composer.
+
+### ZIP File
+
+Navigate to the "Releases" section in the sidebar, and click on the latest release.  Inside the release you will see a ZIP file that looks like 
+*wp-api-privacy-1.x.x.zip*.  Simply download that and use the WordPress plugin installer in the admin panel to add it.
+
+### Composer
+
+You can add the plugin to your website using Composer.  First navigate to your main WordPress plugins folder, typically located at *wp-content/plugins*. 
+Run the command:
+
+`composer create-project wp-privacy/wp-api-privacy
+
+The navigate to your plugins page in the WordPress admin panel and activate the plugin
