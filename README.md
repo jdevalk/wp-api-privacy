@@ -1,15 +1,22 @@
 # WP API Privacy
 
-The default WordPress installation from wordpress.org automatically transmits personal information such as your website name via various HTTP calls that occur the admin.  
+The default WordPress installation from wordpress.org automatically transmits extraneous information via various HTTP calls that occur the admin. Some of this data may be cause for concern
+from a privacy perspective. 
 
-The current information we've found includes:
-- The full public URL for your website (i.e. http://mysite.com)
-- The version number of your WordPress installation
+This plugin seeks to limit that information, attempting to further protect your privacy in the process. Simply install this plugin and activate it, and various aspects of WordPress that 
+are questionable from a privacy perspective will be modified.  
+## Modifications Made 
 
-Combining this information with your IP address (which all servers can determine from incoming requests), provides the recipient with potentially intrusive insight into every website using the WordPress platform. 
+Default outgoing HTTP requests to third-party services like the plugin and theme update mechanism at WordPress.org contains site information in the User-Agent header.  For example, all
+requests contain your website name in the form of http://mysite.com, giving third-parties detailed information about your site.  Combining this information with your IP address (which all servers can determine from incoming requests), provides the recipient with potentially intrusive insight into every website using the WordPress platform. 
 
-This plugin seeks to limit that information, attempting to further protect your privacy in the process. Simply install this plugin and activate it, and your website URL and WordPress version number will be stripped from outgoing API requests from your website.  Some API calls, such as the ones to the plugin listings, also contain a version parameter to filter 
-the associated list of plugins - these are left in (but your website URL is still stripped).
+Once active, the plugin strips this information so requests do not contain information about the domain name that requested them.  Some API calls, such as the ones to the plugin listings, also contain a version parameter to filter the associated list of plugins - these are left in.
+
+### Plugin Data
+
+When a default WordPress installation contains WordPress.org requestion information about plugin updates, it sends detailed information about every plugin on your WordPress site, including all the plugin headers available.  This occurs even for private plugins, or plugins that are not hosted on WordPress.org.
+
+After activation, any plugins that update from third-party repositories (as indicated by the *Update URI* in the plugin header, will be filtered on all outbound requests.
 
 ## Installation
 
