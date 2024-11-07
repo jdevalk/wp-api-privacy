@@ -25,9 +25,14 @@ Navigate to the "Releases" [section in the sidebar](https://github.com/wp-privac
 You can add the plugin to your website using Composer.  First navigate to your main WordPress plugins folder, typically located at *wp-content/plugins*. 
 
 The execute the command:
-
 ```
 composer create-project wp-privacy/wp-api-privacy
 ```
+
+## Verification
+
+After installing the plugin, you can also use the "HTTP Requests Manager" to verify the user-agent field has been changed to "WordPress/Private"
+
+
 
 The navigate to your plugins page in the WordPress admin panel and activate the plugin
