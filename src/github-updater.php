@@ -64,15 +64,12 @@ class GitHubUpdater {
                 'changelog'    => $this->updateInfo->changeLog
             ];
 
-            $response->banners = [
-                'high' => 'https://images.pexels.com/photos/164425/pexels-photo-164425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            ];
-
+            if ( $this->updateInfo->banner ) {
+                $response->banners = [
+                    'high' => $this->updateInfo->banner
+                ];
+            }
         }
-
-
-          
-
         return $response;        
     }
 
@@ -151,6 +148,7 @@ class GitHubUpdater {
                         $this->updateInfo->description = $headerData[ 'description' ];
                         $this->updateInfo->author = $headerData[ 'author' ];
                         $this->updateInfo->authorUri = $headerData[ 'author uri' ];
+                        $this->updateInfo->banner = $headerData[ 'banner' ];
                         $this->updateInfo->updatedAt = date( 'Y-m-d', strtotime( $release->published_at ) );
                         $this->updateInfo->changeLog = $this->generateChangeLog( $releaseInfo );
 
