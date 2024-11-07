@@ -6,12 +6,12 @@
     Description: Strips potentially identifying information from outbound requests to the WordPress.org API
     Author: Duane Storey
     Author URI: https://duanestorey.com
-    Version: 0.0.1
+    Version: 0.0.3
     Requires PHP: 6.0
     Requires at least: 6.0
     Tested up to: 6.6
     Update URI: https://github.com/wpprivacy/wp-api-privacy
-    Stable: 0.0.2
+    Stable: 0.0.3
 */
 
 namespace WP_Privacy\WP_API_Privacy;
