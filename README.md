@@ -1,4 +1,4 @@
-# wp-api-private
+# WP API Privacy
 
 The default WordPress installation from wordpress.org automatically transmits personal information such as your website name via API various API calls in the admin.  
 
