@@ -5,14 +5,14 @@ namespace WP_Privacy\WP_API_Privacy;
 require_once( 'github-updater.php' );
 
 class ApiPrivacy extends GithubUpdater {
-    protected $slug;
+    private const USER_AGENT = 'WordPress/Private';
 
     private static $instance = null;
 
     protected function __construct() {
         // initialize the updater
         parent::__construct( 
-            'wp-privacy/wp-api-privacy.php',
+            'wp-api-privacy.php',
             'wp-privacy',
             'wp-api-privacy',
             'main'

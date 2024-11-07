@@ -4,7 +4,6 @@ namespace WP_Privacy\WP_API_Privacy;
 
 class GitHubUpdater {
     private const CACHE_TIME = ( 60 * 15 ); // 15 minutes
-    private const USER_AGENT = 'WordPress/Private';
 
     protected $pluginSlug = null;
     protected $githubUser = null;
@@ -29,8 +28,38 @@ class GitHubUpdater {
             $this->setupGithubUrls();
             $this->setupTransientKeys();
             $this->checkForUpdate();
+
+            add_filter( 'plugins_api', [ $this, 'handlePluginsApi' ], 20, 3 );
+            add_filter( 'site_transient_update_plugins', [ $this, 'handleUpdate' ] );
         }
     }
+
+    public function handleUpdate( $transient ) {
+        if ( empty( $transient->checked ) ) {
+            return $transient;
+        }
+
+        if ( $this->updateInfo ) {
+            print_r( $this->updateInfo );
+        }
+    }
+
+    public function handlePluginsApi( $response, $action, $args ) {
+        if ( 'plugin_information' !== $action ) {
+            return $response;
+        }
+
+        echo 'here'; die;   
+
+        if ( empty( $args->slug ) || $this->pluginSlug !== $args->slug ) {
+            return $response;
+        }
+
+        echo 'here'; die;
+      
+
+    }
+
 
     protected function hasValidInfo() {
         return ( $this->pluginSlug && $this->githubUser && $this->githubProject && $this->githubBranch );
@@ -54,11 +83,25 @@ class GitHubUpdater {
         $headerData = $this->getHeaderInfo();
         $releaseInfo = $this->getReleaseInfo();
 
-        if ( $headerData && $releaseData ) {
-            $this->updateInfo = new \stdClass;
-            $this->updateInfo->version = $headerData[ 'Stable' ];
-            $this->updateInfo->cache_key = $this->githubBranch . '_' . $this->$this->cacheModifier;
+        if ( $headerData && $releaseInfo ) {
+            $latestVersion = $headerData[ 'stable' ];
 
+            if ( $latestVersion ) {
+                foreach( $releaseInfo as $release ) {
+                    if ( $release->tag_name = $latestVersion ) {
+                        // found
+                        $this->updateInfo = new \stdClass;
+
+                        $this->updateInfo->requires = $headerData[ 'requires at least' ];
+                        $this->updateInfo->testedUpTo = $headerData[ 'tested up to' ];
+                        $this->updateInfo->requiresPhp = $headerData[ 'requires php' ];
+                        $this->updateInfo->version = $latestVersion;
+                        $this->updateInfo->updateUrl = $release->zipball_url;
+
+                        break;
+                    }
+                }           
+            }
         }
     }    
 
