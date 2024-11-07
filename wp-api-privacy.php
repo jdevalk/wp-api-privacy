@@ -8,6 +8,7 @@
     Stable: 0.0.1
     Requires PHP: 6.0
     Requires at least: 6.0
+    Tested up to: 6.6
     Update URI: https://github.com/wpprivacy/wp-api-privacy
 */
 
