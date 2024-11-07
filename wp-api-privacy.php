@@ -12,6 +12,10 @@
     Tested up to: 6.6
     Update URI: https://github.com/wpprivacy/wp-api-privacy
     Stable: 0.0.7
+
+    Copyright (C) 2024 by Duane Storey - All Rights Reserved
+    You may use, distribute and modify this code under the
+    terms of the GPLv3 license.
 */
 
 namespace WP_Privacy\WP_API_Privacy;

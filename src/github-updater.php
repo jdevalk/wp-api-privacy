@@ -1,9 +1,14 @@
 <?php
+/* 
+    Copyright (C) 2024 by Duane Storey - All Rights Reserved
+    You may use, distribute and modify this code under the
+    terms of the GPLv3 license.
+ */
 
 namespace WP_Privacy\WP_API_Privacy;
 
 class GitHubUpdater {
-    private const CACHE_TIME = ( 60 * 5 ); // 15 minutes
+    private const CACHE_TIME = ( 60 * 15 ); // 15 minutes
 
     protected $pluginSlug = null;
     protected $githubUser = null;
@@ -196,6 +201,7 @@ class GitHubUpdater {
     }
 
     private function getReleaseInfo() {
+        // Use the Github API to obtain release information
         $githubTagData = get_transient( $this->tagCacheKey );
         if ( !$githubTagData ) {
             $result = wp_remote_get( $this->githubTagApi );
@@ -213,6 +219,7 @@ class GitHubUpdater {
     }
 
     private function getHeaderInfo() {
+        // Parse the main header file from the Github repo
         $headerData = get_transient( $this->headerCacheKey );
         if ( !$headerData ) {
             $result = wp_remote_get( $this->gibhubMainPhp );

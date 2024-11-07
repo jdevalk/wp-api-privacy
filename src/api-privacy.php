@@ -1,4 +1,9 @@
 <?php
+/* 
+    Copyright (C) 2024 by Duane Storey - All Rights Reserved
+    You may use, distribute and modify this code under the
+    terms of the GPLv3 license.
+ */
 
 namespace WP_Privacy\WP_API_Privacy;
 
@@ -20,6 +25,7 @@ class ApiPrivacy extends GithubUpdater {
     }
 
     public function init() {
+        // set up our user-agent filter
         add_filter( 'http_request_args', array( $this, 'modifyUserAgent' ), 0 );
 
     }
