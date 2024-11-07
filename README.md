@@ -22,8 +22,11 @@ Navigate to the "Releases" section in the sidebar, and click on the latest relea
 ### Composer
 
 You can add the plugin to your website using Composer.  First navigate to your main WordPress plugins folder, typically located at *wp-content/plugins*. 
-Run the command:
 
-`composer create-project wp-privacy/wp-api-privacy
+The execute the command:
+
+```
+composer create-project wp-privacy/wp-api-privacy
+```
 
 The navigate to your plugins page in the WordPress admin panel and activate the plugin
