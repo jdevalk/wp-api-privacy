@@ -12,7 +12,7 @@ class ApiPrivacy extends GithubUpdater {
     protected function __construct() {
         // initialize the updater
         parent::__construct( 
-            'wp-api-privacy.php',
+            'wp-api-privacy/wp-api-privacy.php',
             'wp-privacy',
             'wp-api-privacy',
             'main'

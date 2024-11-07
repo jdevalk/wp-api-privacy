@@ -29,7 +29,6 @@ class GitHubUpdater {
             $this->setupTransientKeys();
             $this->checkForUpdate();
 
-            add_filter( 'plugins_api', [ $this, 'handlePluginsApi' ], 20, 3 );
             add_filter( 'site_transient_update_plugins', [ $this, 'handleUpdate' ] );
         }
     }
@@ -40,26 +39,9 @@ class GitHubUpdater {
         }
 
         if ( $this->updateInfo ) {
-            print_r( $this->updateInfo );
+            echo $this->pluginSlug; die;
         }
     }
-
-    public function handlePluginsApi( $response, $action, $args ) {
-        if ( 'plugin_information' !== $action ) {
-            return $response;
-        }
-
-        echo 'here'; die;   
-
-        if ( empty( $args->slug ) || $this->pluginSlug !== $args->slug ) {
-            return $response;
-        }
-
-        echo 'here'; die;
-      
-
-    }
-
 
     protected function hasValidInfo() {
         return ( $this->pluginSlug && $this->githubUser && $this->githubProject && $this->githubBranch );
