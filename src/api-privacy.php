@@ -28,8 +28,6 @@ class ApiPrivacy extends GithubUpdater {
     }
 
     public function init() {
-        // for the future
-     //   $json = 
     }
 
     public function modifyUserAgent( $params, $url ) {
