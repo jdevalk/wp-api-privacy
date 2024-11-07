@@ -2,8 +2,8 @@
 
 The default WordPress installation from wordpress.org automatically transmits personal information such as your website name via API various API calls in the admin.  
 
-The current information we've found includes
-- The full public URL for your website (i.e. http://mysite.com
+The current information we've found includes:
+- The full public URL for your website (i.e. http://mysite.com)
 - The version number of your WordPress installation
 
 Combining this information with your IP address (which all servers can determine from incoming requests), provides WordPress.org with potentially intrusive insight into every website using WordPress.  
