@@ -1,0 +1,6 @@
+{
+    "name": "wp-privacy/wp-api-privacy",
+    "description": "Strips potentially identifying information from outbound requests to the WordPress.org API",
+    "require": {
+    }
+}

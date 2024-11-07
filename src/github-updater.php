@@ -3,7 +3,7 @@
 namespace WP_Privacy\WP_API_Privacy;
 
 class GitHubUpdater {
-    private const CACHE_TIME = ( 60 * 1 ); // 15 minutes
+    private const CACHE_TIME = ( 60 * 5 ); // 15 minutes
 
     protected $pluginSlug = null;
     protected $githubUser = null;
@@ -27,7 +27,6 @@ class GitHubUpdater {
         if ( $this->hasValidInfo() && current_user_can( 'update_plugins' ) ) {
             $this->setupGithubUrls();
             $this->setupTransientKeys();
-            $this->deleteTransients();
             $this->checkForUpdate();
 
             add_filter( 'plugins_api', [ $this, 'handlePluginInfo' ], 20, 3 );
@@ -46,23 +45,36 @@ class GitHubUpdater {
 
         if ( $this->updateInfo ) {
             $response = new \stdClass();
+            $response->slug = basename( $this->pluginSlug, '.php' );
 
-            $response->name           = $this->updateInfo->name;
-            $response->slug           = $this->updateInfo->description;
-            $response->version        = $this->updateInfo->version;
-            $response->compatible     = $this->updateInfo->testedUpTo;
-            $response->requires       = $this->updateInfo->requires;
-            $response->author         = $this->updateInfo->author;
-            $response->author_profile = $this->updateInfo->authorUri;
-            $response->homepage       = $this->updateInfo->pluginUri;
-            $response->download_link  = $this->updateInfo->updateUrl;
-            $response->requires_php   = $this->updateInfo->requiresPhp;
-            $response->last_updated   = $this->updateInfo->updatedAt;
+            $mappings = array(
+                'name' => 'name',
+                'version' => 'version',
+                'compatible' => 'testedUpTo',
+                'requires' => 'requires',
+                'author' => 'author',
+                'author_profile' => 'authorUri',
+                'homepage' => 'pluginUri',
+                'download_link' => 'updateUrl',
+                'requires_php' => 'requiresPhp',
+                'last_updated' => 'updatedAt'
+            );
 
-            $response->sections = [
-                'description'  => $this->updateInfo->description,
-                'changelog'    => $this->updateInfo->changeLog
-            ];
+            foreach( $mappings as $key1 => $key2 ) {
+                if ( isset( $this->updateInfo->$key2 ) && !empty( $this->updateInfo->$key2 ) ) {
+                    $response->$key1 = $this->updateInfo->$key2;
+                }
+            }
+
+            $response->sections = [];
+
+            if ( isset( $this->updateInfo->description ) ) {
+                $response->sections[ 'description' ] = $this->updateInfo->description;
+            }
+
+            if ( isset( $this->updateInfo->changeLog ) ) {
+                $response->sections[ 'changelog' ] = $this->updateInfo->changeLog;
+            }
 
             if ( $this->updateInfo->banner ) {
                 $response->banners = [
@@ -127,6 +139,16 @@ class GitHubUpdater {
         return $changeLog;
     }
 
+    private function getHeaderData( $headerData, $key, $default = false ) {
+        $data = $default;
+
+        if ( isset( $headerData ) && isset( $headerData[ $key ] ) && !empty( $headerData[ $key ] ) ) {
+            return $headerData[ $key ];
+        }
+
+        return $data;
+    }
+
     private function checkForUpdate() {
         $headerData = $this->getHeaderInfo();
         $releaseInfo = $this->getReleaseInfo();
@@ -140,16 +162,17 @@ class GitHubUpdater {
                         // found
                         $this->updateInfo = new \stdClass;
 
-                        $this->updateInfo->requires = $headerData[ 'requires at least' ];
-                        $this->updateInfo->testedUpTo = $headerData[ 'tested up to' ];
-                        $this->updateInfo->requiresPhp = $headerData[ 'requires php' ];
-                        $this->updateInfo->name = $headerData[ 'plugin name' ];
-                        $this->updateInfo->pluginUri = $headerData[ 'plugin uri' ];
-                        $this->updateInfo->description = $headerData[ 'description' ];
-                        $this->updateInfo->author = $headerData[ 'author' ];
-                        $this->updateInfo->authorUri = $headerData[ 'author uri' ];
-                        $this->updateInfo->banner = $headerData[ 'banner' ];
-                        $this->updateInfo->updatedAt = date( 'Y-m-d', strtotime( $release->published_at ) );
+                        $this->updateInfo->requires = $this->getHeaderData( $headerData, 'requires at least' );
+                        $this->updateInfo->testedUpTo = $this->getHeaderData( $headerData, 'tested up to' );
+                        $this->updateInfo->requiresPhp = $this->getHeaderData( $headerData, 'requires php' );
+                        $this->updateInfo->name = $this->getHeaderData( $headerData, 'plugin name' );
+                        $this->updateInfo->pluginUri = $this->getHeaderData( $headerData, 'plugin uri' );
+                        $this->updateInfo->description = $this->getHeaderData( $headerData, 'description' );
+                        $this->updateInfo->author = $this->getHeaderData( $headerData, 'author' );
+                        $this->updateInfo->authorUri = $this->getHeaderData( $headerData, 'author uri' );
+                        $this->updateInfo->banner = $this->getHeaderData( $headerData, 'banner' );
+                        
+                        $this->updateInfo->updatedAt = date( 'Y-m-d H:i', strtotime( $release->published_at ) );
                         $this->updateInfo->changeLog = $this->generateChangeLog( $releaseInfo );
 
                         $this->updateInfo->version = $latestVersion;
