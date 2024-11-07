@@ -45,5 +45,6 @@ is available).
 
 ## Verification
 
-After installing the plugin, you can also use the "HTTP Requests Manager" plugin to verify the user-agent field has been changed to "WordPress/Private"
+After installing the plugin, you can also use the "HTTP Requests Manager" plugin to verify the user-agent field has been changed to "WordPress/Private", and that the plugin information
+is stripped of any plugins hosted off-site.
 
