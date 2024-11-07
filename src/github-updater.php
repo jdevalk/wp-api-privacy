@@ -101,13 +101,13 @@ class GitHubUpdater {
                 version_compare( $this->updateInfo->requires, get_bloginfo( 'version' ), '<=' ) && 
                 version_compare( $this->updateInfo->requiresPhp, PHP_VERSION, '<' ) 
             ) {
-                $response              = new \stdClass;
+                $response = new \stdClass;
 
-                $response->slug        = basename( $this->pluginSlug, '.php' );
-                $response->plugin      = $this->pluginSlug;
+                $response->slug = basename( $this->pluginSlug, '.php' );
+                $response->plugin = $this->pluginSlug;
                 $response->new_version = $this->updateInfo->version;
-                $response->tested      = $this->updateInfo->testedUpTo;
-                $response->package     = $this->updateInfo->updateUrl;
+                $response->tested = $this->updateInfo->testedUpTo;
+                $response->package = $this->updateInfo->updateUrl;
 
                 $transient->response[ $response->plugin ] = $response;
             }
