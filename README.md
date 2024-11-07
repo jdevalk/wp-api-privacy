@@ -31,7 +31,7 @@ composer create-project wp-privacy/wp-api-privacy
 
 ## Verification
 
-After installing the plugin, you can also use the "HTTP Requests Manager" to verify the user-agent field has been changed to "WordPress/Private"
+After installing the plugin, you can also use the "HTTP Requests Manager" plugin to verify the user-agent field has been changed to "WordPress/Private"
 
 
 
