@@ -29,6 +29,11 @@ The execute the command:
 composer create-project wp-privacy/wp-api-privacy
 ```
 
+### Future Updates
+
+The plugin will automatically fetch updates via the WordPress admin from this Github repository using the WordPress update mechanism (you will be notified in the admin when an update 
+is available).
+
 ## Verification
 
 After installing the plugin, you can also use the "HTTP Requests Manager" plugin to verify the user-agent field has been changed to "WordPress/Private"
