@@ -210,7 +210,6 @@ class GitHubUpdater {
                
                 if ( $githubTagData ) {
                     set_transient( $this->tagCacheKey, $githubTagData, GitHubUpdater::CACHE_TIME );
-                    delete_transient( $this->headerCacheKey );
                 }
             } 
         }
@@ -238,6 +237,7 @@ class GitHubUpdater {
                         }
 
                         set_transient( $this->headerCacheKey, $headerData, GitHubUpdater::CACHE_TIME );
+                        delete_transient( $this->tagCacheKey );
                     }
                 }
             }      
