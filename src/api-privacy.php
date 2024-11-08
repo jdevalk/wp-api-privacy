@@ -31,7 +31,7 @@ class ApiPrivacy extends GithubUpdater {
     }
 
     public function init() {
-        add_action( 'admin_menu', array( $this, 'setupSettingsPage' ) );
+        //add_action( 'admin_menu', array( $this, 'setupSettingsPage' ) );
     }
 
     public function renderSettingsPage() {
