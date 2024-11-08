@@ -103,19 +103,23 @@ class ApiPrivacy extends GithubUpdater {
                 // check for plugin info
                 if ( $decodedJson->plugins ) {
                     $toRemove = [];
+                    $toKeep = [];
                     foreach( $decodedJson->plugins as $name => $plugin ) {
                         if ( isset( $plugin->UpdateURI ) && !empty( $plugin->UpdateURI ) ) {
                             if ( strpos( $plugin->UpdateURI, 'wordpress.org' ) === false ) {
                                 $toRemove[] = $name;
+                                continue;
                             }
                         }
+
+                        $toKeep[] = $name;
                     }
 
                     foreach( $toRemove as $remove ) {
                         unset( $decodedJson->plugins->$remove );                        
                     }
 
-                    $decodedJson->active = array_diff( $decodedJson->active, $toRemove );
+                    $decodedJson->active = $toKeep;
                 }
                 $params[ 'body' ][ 'plugins' ] = json_encode( $decodedJson );
             }
