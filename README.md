@@ -1,7 +1,5 @@
 # WP API Privacy
 
-* This plugin is still in active development. Please don't install it on any production sites, but feel free to test it on development or less essential sites to help provide feedback. Thanks. *
-
 The default WordPress installation from wordpress.org automatically transmits extraneous information via various HTTP calls that occur the admin. Some of this data may be cause for concern
 from a privacy perspective. 
 
@@ -22,7 +20,7 @@ After activation, any plugins that update from third-party repositories (as indi
 
 ## Installation
 
-You can install the package either via a ZIP file, or by using composer.
+You can install the package either via a ZIP file, or by using composer.  Please note, this plugin is still in active development - please don't install it on any production sites, but feel free to test it on development or less essential sites to help provide feedback. 
 
 ### ZIP File
 
