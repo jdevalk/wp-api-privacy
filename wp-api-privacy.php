@@ -11,7 +11,7 @@
     Requires at least: 6.0
     Tested up to: 6.6
     Update URI: https://github.com/wpprivacy/wp-api-privacy
-    Stable: 1.0.1
+    Stable: 1.0.2
 
     Copyright (C) 2024 by Duane Storey - All Rights Reserved
     You may use, distribute and modify this code under the
