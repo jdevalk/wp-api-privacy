@@ -11,7 +11,7 @@
     Requires at least: 6.0
     Tested up to: 6.7
     Update URI: https://github.com/wpprivacy/wp-api-privacy
-    Stable: 1.0.2
+    Stable: 1.0.3
     Text Domain: wp-api-privacy
     Domain Path: /lang
 
