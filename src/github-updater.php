@@ -32,6 +32,12 @@ class GitHubUpdater {
         if ( $this->hasValidInfo() && current_user_can( 'update_plugins' ) ) {
             $this->setupGithubUrls();
             $this->setupTransientKeys();
+
+            // check if the user has manually tried to check all updates at Home/Updates in the WP admin
+            if ( is_admin() && strpos( $_SERVER[ 'REQUEST_URI' ], 'update-core.php?force-check=1' ) !== false ) {
+                $this->deleteTransients();
+            }
+            
             $this->checkForUpdate();
 
             add_filter( 'plugins_api', [ $this, 'handlePluginInfo' ], 20, 3 );
