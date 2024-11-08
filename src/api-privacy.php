@@ -131,7 +131,7 @@ class ApiPrivacy extends GithubUpdater {
                     $toRemove = [];
                     foreach( $decodedJson->themes as $name => $theme ) {
                         if ( isset( $theme->UpdateURI ) && !empty( $theme->UpdateURI ) ) {
-                            if ( strpos( $plugin->UpdateURI, 'wordpress.org' ) === false ) {
+                            if ( strpos( $theme->UpdateURI, 'wordpress.org' ) === false ) {
                                 $toRemove[] = $name;
                             }
                         }
