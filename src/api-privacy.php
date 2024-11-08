@@ -31,6 +31,21 @@ class ApiPrivacy extends GithubUpdater {
     }
 
     public function init() {
+        add_action( 'admin_menu', array( $this, 'setupSettingsPage' ) );
+    }
+
+    public function renderSettingsPage() {
+        echo '<h2>Test</h2>';
+    }
+
+    public function setupSettingsPage() {
+        add_options_page(
+            __( 'API Privacy', 'wp-api-privacy' ),
+            __( 'API Privacy', 'wp-api-privacy' ),
+            'manage_options',
+            'api-privacy',
+            array( $this, 'renderSettingsPage' )
+        );   
     }
 
     public function modifyCurl( $handle, $params, $url ) {
@@ -96,7 +111,7 @@ class ApiPrivacy extends GithubUpdater {
             $params[ 'user-agent' ] = ApiPrivacy::USER_AGENT;
         }
    
-        // Remove plugins hosted off-site, nobody needs to know these - for now this just uses the Plugin URI parameter
+        // Remove plugins hosted off-site, nobody needs to know these - for now this just uses the 'Update URI' parameter
         if ( strpos( $url, 'wordpress.org/plugins/update-check/' ) !== false ) {
             $decodedJson = json_decode( $params[ 'body' ][ 'plugins'] );
             if ( $decodedJson ) {
@@ -106,6 +121,7 @@ class ApiPrivacy extends GithubUpdater {
                     $toKeep = [];
                     foreach( $decodedJson->plugins as $name => $plugin ) {
                         if ( isset( $plugin->UpdateURI ) && !empty( $plugin->UpdateURI ) ) {
+                            // don't remove ones hosted on wordpress.org
                             if ( strpos( $plugin->UpdateURI, 'wordpress.org' ) === false ) {
                                 $toRemove[] = $name;
                                 continue;
@@ -131,6 +147,7 @@ class ApiPrivacy extends GithubUpdater {
                     $toRemove = [];
                     foreach( $decodedJson->themes as $name => $theme ) {
                         if ( isset( $theme->UpdateURI ) && !empty( $theme->UpdateURI ) ) {
+                            // don't remove ones hosted on wordpress.org
                             if ( strpos( $theme->UpdateURI, 'wordpress.org' ) === false ) {
                                 $toRemove[] = $name;
                             }
