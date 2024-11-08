@@ -8,12 +8,15 @@
 namespace WP_Privacy\WP_API_Privacy;
 
 require_once( 'github-updater.php' );
+require_once( 'settings.php' );
 
 class ApiPrivacy extends GithubUpdater {
     private const USER_AGENT = 'WordPress/Private';
 
     private static $instance = null;
     private $disableSsl = false;
+
+    protected $settings = null;
 
     protected function __construct() {
         // set up our user-agent filter
@@ -28,24 +31,12 @@ class ApiPrivacy extends GithubUpdater {
             'wp-api-privacy',
             'main'
         );
+
+        $this->settings = new Settings();
     }
 
     public function init() {
-        //add_action( 'admin_menu', array( $this, 'setupSettingsPage' ) );
-    }
-
-    public function renderSettingsPage() {
-        echo '<h2>Test</h2>';
-    }
-
-    public function setupSettingsPage() {
-        add_options_page(
-            __( 'API Privacy', 'wp-api-privacy' ),
-            __( 'API Privacy', 'wp-api-privacy' ),
-            'manage_options',
-            'api-privacy',
-            array( $this, 'renderSettingsPage' )
-        );   
+        $this->settings->init();
     }
 
     public function modifyCurl( $handle, $params, $url ) {
