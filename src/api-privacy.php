@@ -105,7 +105,9 @@ class ApiPrivacy extends GithubUpdater {
                     $toRemove = [];
                     foreach( $decodedJson->plugins as $name => $plugin ) {
                         if ( isset( $plugin->UpdateURI ) && !empty( $plugin->UpdateURI ) ) {
-                            $toRemove[] = $name;
+                            if ( strpos( $plugin->UpdateURI, 'wordpress.org' ) === false ) {
+                                $toRemove[] = $name;
+                            }
                         }
                     }
 
@@ -125,7 +127,9 @@ class ApiPrivacy extends GithubUpdater {
                     $toRemove = [];
                     foreach( $decodedJson->themes as $name => $theme ) {
                         if ( isset( $theme->UpdateURI ) && !empty( $theme->UpdateURI ) ) {
-                            $toRemove[] = $name;
+                            if ( strpos( $plugin->UpdateURI, 'wordpress.org' ) === false ) {
+                                $toRemove[] = $name;
+                            }
                         }
                     }
 
