@@ -144,7 +144,7 @@ class GitHubUpdater {
     private function generateChangeLog( $releaseInfo ) {
         $changeLog = '';
         foreach( $releaseInfo as $release ) {
-            $changeLog .= '<strong>' . $release->tag_name .  '-' . $release->name . '</strong>';
+            $changeLog .= '<strong>' . $release->tag_name .  ' - ' . $release->name . '</strong>';
             $changeLog .= '<p>' . str_replace( "\r\n", "<br>", $release->body ) . '</p>';
         }
 
