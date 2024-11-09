@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP API Privacy\n"
-"POT-Creation-Date: 2024-11-09 12:48-0800\n"
-"PO-Revision-Date: 2024-11-09 12:48-0800\n"
+"POT-Creation-Date: 2024-11-09 15:01-0800\n"
+"PO-Revision-Date: 2024-11-09 15:03-0800\n"
 "Last-Translator: Alex Lion <learnwithalex@gmail.com>\n"
 "Language-Team: Alex Lion <learnwithalex@gmail.com>\n"
 "Language: zh_TW\n"
@@ -16,53 +16,62 @@ msgstr ""
 "X-Poedit-WPHeader: wp-api-privacy.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: src/api-privacy.php:50
+msgid "Settings"
+msgstr "設定"
 
 #: src/settings.php:31
 msgid "Options"
 msgstr "選項"
 
 #: src/settings.php:33
-msgid "Strip site URL from User-Agent header on all requests"
-msgstr "在全部要求的使用者代理程式標頭中移除網站網址"
+msgid ""
+"Strip site URL and version from User-Agent header on all WP API requests"
+msgstr "在全部 WP API 的使用者代理程式標頭中移除網站網址及網站版本"
 
 #: src/settings.php:34
+msgid "Strip site URL and version from User-Agent header on all other requests"
+msgstr "在全部其他要求的使用者代理程式標頭中移除網站網址及網站版本"
+
+#: src/settings.php:35
 msgid "Strip external plugins from API calls"
 msgstr "在 API 呼叫中移除外部外掛資訊"
 
-#: src/settings.php:35
+#: src/settings.php:36
 msgid "Strip external themes from API calls"
 msgstr "在 API 呼叫中移除外部佈景主題資訊"
 
-#: src/settings.php:36
+#: src/settings.php:37
 msgid "Modify data sent to core update API"
 msgstr "修改傳送至核心程式更新 API 的資料"
 
-#: src/settings.php:37
+#: src/settings.php:38
 msgid "Strip wp_blog and wp_install headers"
 msgstr "移除 wp_blog 及 wp_install 標頭"
 
-#: src/settings.php:38
+#: src/settings.php:39
 msgid "Strip user login info from JSON API"
 msgstr "在 JSON API 中移除使用者登入資訊"
 
-#: src/settings.php:44
+#: src/settings.php:45
 msgid "Debug"
 msgstr "偵錯"
 
-#: src/settings.php:46
+#: src/settings.php:47
 msgid "Disable HTTPs for packet sniffing (should only be used for testing)"
 msgstr "停用 HTTPS 以進行封包偵測 (僅應用於測試)"
 
-#: src/settings.php:53
+#: src/settings.php:54
 msgid "Your settings have been saved"
 msgstr "設定已儲存。"
 
 #. Plugin Name of the plugin/theme
-#: src/settings.php:164 src/settings.php:165 templates/options-page.php:2
+#: src/settings.php:167 src/settings.php:168 templates/options-page.php:2
 msgid "WP API Privacy"
 msgstr "WP API Privacy"
 
@@ -70,7 +79,7 @@ msgstr "WP API Privacy"
 msgid "You can configure the options for API privacy here."
 msgstr "網站管理員可以在這裡組態 API 隱私權的選項。"
 
-#: templates/options-page.php:9
+#: templates/options-page.php:10
 #, php-format
 msgid ""
 "The number of API requests that have been modified since activation is: %s"
@@ -78,7 +87,7 @@ msgid_plural ""
 "The number of API requests that have been modified since activation are: %s"
 msgstr[0] "這個外掛啟用後，經過修改的 API 要求數量: %s"
 
-#: templates/options-page.php:39
+#: templates/options-page.php:41
 msgid "Save Changes"
 msgstr "儲存設定"
 
