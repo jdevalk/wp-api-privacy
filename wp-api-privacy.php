@@ -6,7 +6,7 @@
     Description: Strips potentially identifying information from outbound requests to the WordPress.org API
     Author: Duane Storey
     Author URI: https://duanestorey.com
-    Version: 1.1.0
+    Version: 1.1.2
     Requires PHP: 6.0
     Requires at least: 6.0
     Tested up to: 6.7
@@ -24,7 +24,7 @@
 
 namespace WP_Privacy\WP_API_Privacy;
 
-define( 'PRIVACY_VERSION', '1.1.0' );
+define( 'PRIVACY_VERSION', '1.1.2' );
 define( 'PRIVACY_PATH', dirname( __FILE__ ) );
 
 require_once( dirname( __FILE__ ) . '/src/api-privacy.php' );
