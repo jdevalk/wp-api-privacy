@@ -7,15 +7,19 @@ are questionable from a privacy perspective will be modified.
 
 ## Modifications Made 
 
-Default outgoing HTTP requests to third-party services like the plugin and theme update mechanism at WordPress.org contains site information in the User-Agent header.  For example, all requests contain your website name in the form of http://mysite.com, giving third-parties detailed information about your site.  Combining this information with your IP address (which all servers can determine from incoming requests), provides the recipient with potentially intrusive insight into every website using the WordPress platform. 
+Default outgoing HTTP requests to third-party services like the plugin and theme update mechanism at WordPress.org contains site and version information in the User-Agent header.  For example, all requests contain your website name in the form of http://mysite.com, and a version string such as 6.6, giving third-parties detailed information about your site.  Combining this information with your IP address (which all servers can determine from incoming requests), provides the recipient with potentially intrusive insight into every website using the WordPress platform. 
 
-Once active, the plugin strips this information so requests do not contain information about the domain name that requested them.  Some API calls, such as the ones to the plugin listings, also contain a version parameter to filter the associated list of plugins - these are left in.
+Once active, the plugin strips can be configured to strip this information so requests do not contain information about the domain name that requested them or which version of WordPress it was using.  Some API calls, such as the ones to the plugin listings, also contain a version parameter to filter the associated list of plugins - these are left in.
 
 ### Plugin And Theme Data
 
-When a default WordPress installation contains WordPress.org requestion information about plugin and theme updates, it sends detailed information about every plugin and theme on your WordPress site, including all the plugin and theme headers available.  This occurs even for private plugins or themes, or plugins and themes that are not hosted on WordPress.org.
+When a default WordPress installation contains WordPress.org requests information about plugin and theme updates, it sends detailed information about every plugin and theme on your WordPress site, including all the plugin and theme headers available.  This occurs even for private plugins or themes, or plugins and themes that are not hosted on WordPress.org.
 
 After activation, any plugins or themes that update from third-party repositories (as indicated by the *Update URI* in the plugin header) will be filtered on all outbound requests.
+
+### Core Requests
+
+When WordPress attempts to do a core software update, it sends along detailed information such as your site URL, how many users you have, how many blogs you have, your MySQL version, your PHP version, the type of server you have (i.e Mac, Linux, Windows, etc) and all the PHP extensions you have on your site.  This information can also be selectively filtered to only provide what's absolutey essential to the WordPress API servers.
 
 ## Installation
 
