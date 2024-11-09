@@ -7,8 +7,8 @@
 
 namespace WP_Privacy\WP_API_Privacy;
 
-require_once( 'github-updater.php' );
-require_once( 'settings.php' );
+require_once( PRIVACY_PATH_SRC . '/github-updater.php' );
+require_once( PRIVACY_PATH_SRC . '/settings.php' );
 
 class ApiPrivacy extends GithubUpdater {
     private const USER_AGENT = 'WordPress/Private';

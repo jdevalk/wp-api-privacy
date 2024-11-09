@@ -26,6 +26,7 @@ namespace WP_Privacy\WP_API_Privacy;
 
 define( 'PRIVACY_VERSION', '1.1.2' );
 define( 'PRIVACY_PATH', dirname( __FILE__ ) );
+define( 'PRIVACY_PATH_SRC', dirname( __FILE__ ) . '/src' );
 
 require_once( dirname( __FILE__ ) . '/src/api-privacy.php' );
 
@@ -35,4 +36,4 @@ function initialize_privacy( $params ) {
     ApiPrivacy::instance()->init();
 }
 
-add_filter( 'plugins_loaded', __NAMESPACE__ . '\initialize_privacy', 0 );
+add_action( 'plugins_loaded', __NAMESPACE__ . '\initialize_privacy', 0 );
