@@ -130,9 +130,20 @@ class ApiPrivacy extends GithubUpdater {
         $wasModified = false;
 
         // Remove site URL from user agent as this is a privacy issue
-        if ( $this->getSetting( 'strip_user_agent' ) && isset( $params[ 'user-agent' ] ) ) {
-            $params[ 'user-agent' ] = ApiPrivacy::USER_AGENT;
-            $wasModified = true;
+        if ( isset( $params[ 'user-agent' ] ) ) {
+            if ( strpos( $url, 'api.wordpress.org/' ) !== false ) {
+                // wordpress api
+                if ( $this->getSetting( 'strip_user_agent' ) ) {
+                    $params[ 'user-agent' ] = ApiPrivacy::USER_AGENT;
+                    $wasModified = true;
+                }
+            } else {
+                // non wordpress api
+                if ( $this->getSetting( 'strip_user_agent_non_wp' ) ) {
+                    $params[ 'user-agent' ] = ApiPrivacy::USER_AGENT;
+                    $wasModified = true;
+                }
+            }
         }
    
         // Remove plugins hosted off-site, nobody needs to know these - for now this just uses the 'Update URI' parameter
