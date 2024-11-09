@@ -4,18 +4,18 @@ The default WordPress installation from wordpress.org automatically transmits ex
 
 This plugin seeks to limit that information, attempting to further protect your privacy in the process. Simply install this plugin and activate it, and various aspects of WordPress that 
 are questionable from a privacy perspective will be modified.  
+
 ## Modifications Made 
 
-Default outgoing HTTP requests to third-party services like the plugin and theme update mechanism at WordPress.org contains site information in the User-Agent header.  For example, all
-requests contain your website name in the form of http://mysite.com, giving third-parties detailed information about your site.  Combining this information with your IP address (which all servers can determine from incoming requests), provides the recipient with potentially intrusive insight into every website using the WordPress platform. 
+Default outgoing HTTP requests to third-party services like the plugin and theme update mechanism at WordPress.org contains site information in the User-Agent header.  For example, all requests contain your website name in the form of http://mysite.com, giving third-parties detailed information about your site.  Combining this information with your IP address (which all servers can determine from incoming requests), provides the recipient with potentially intrusive insight into every website using the WordPress platform. 
 
 Once active, the plugin strips this information so requests do not contain information about the domain name that requested them.  Some API calls, such as the ones to the plugin listings, also contain a version parameter to filter the associated list of plugins - these are left in.
 
-### Plugin Data
+### Plugin And Theme Data
 
-When a default WordPress installation contains WordPress.org requestion information about plugin updates, it sends detailed information about every plugin on your WordPress site, including all the plugin headers available.  This occurs even for private plugins, or plugins that are not hosted on WordPress.org.
+When a default WordPress installation contains WordPress.org requestion information about plugin and theme updates, it sends detailed information about every plugin and theme on your WordPress site, including all the plugin and theme headers available.  This occurs even for private plugins or themes, or plugins and themes that are not hosted on WordPress.org.
 
-After activation, any plugins that update from third-party repositories (as indicated by the *Update URI* in the plugin header, will be filtered on all outbound requests.
+After activation, any plugins or themes that update from third-party repositories (as indicated by the *Update URI* in the plugin header) will be filtered on all outbound requests.
 
 ## Installation
 
@@ -28,14 +28,14 @@ Navigate to the "Releases" [section in the sidebar](https://github.com/wp-privac
 
 ### Composer
 
-You can add the plugin to your website using Composer.  First navigate to your main WordPress plugins folder, typically located at *wp-content/plugins*. 
+You can add the plugin to your website using Composer.  First navigate to your main WordPress directory. 
 
 The execute the command:
 ```
-composer create-project wp-privacy/wp-api-privacy
+composer require wp-api-privacy
 ```
 
-Then navigate to your plugins page in the WordPress admin panel and activate the plugin
+This will install the plugin to your wp-content/plugins directory.  Once done, navigate to your plugins page in the WordPress admin panel and activate the plugin.
 
 ### Future Updates
 
