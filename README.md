@@ -32,7 +32,7 @@ You can add the plugin to your website using Composer.  First navigate to your m
 
 The execute the command:
 ```
-composer require wp-api-privacy
+composer require wp-privacy/wp-api-privacy
 ```
 
 This will install the plugin to your wp-content/plugins directory.  Once done, navigate to your plugins page in the WordPress admin panel and activate the plugin.
