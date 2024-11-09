@@ -35,7 +35,8 @@ class GitHubUpdater {
 
             // check if the user has manually tried to check all updates at Home/Updates in the WP admin
             if ( is_admin() && strpos( $_SERVER[ 'REQUEST_URI' ], 'update-core.php?force-check=1' ) !== false ) {
-                $this->deleteTransients();
+                // Take this out for now, need to think about API considerations
+                // $this->deleteTransients();
             }
             
             $this->checkForUpdate();
