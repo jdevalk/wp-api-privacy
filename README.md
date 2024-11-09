@@ -1,7 +1,6 @@
 # WP API Privacy
 
-The default WordPress installation from wordpress.org automatically transmits extraneous information via various HTTP calls that occur the admin. Some of this data may be cause for concern
-from a privacy perspective. 
+The default WordPress installation from wordpress.org automatically transmits extraneous information via various HTTP calls that occur in the admin. Some of this data may be cause for concern from a privacy perspective. 
 
 This plugin seeks to limit that information, attempting to further protect your privacy in the process. Simply install this plugin and activate it, and various aspects of WordPress that 
 are questionable from a privacy perspective will be modified.  
