@@ -5,12 +5,14 @@
        
         echo sprintf( 
              /* translators: contains a number indicating the number of requests intercepted */
-            esc_html(_n( 
-                'The number of API requests that have been modified since activation is: %s', 
-                'The number of API requests that have been modified since activation are: %s', 
-                $this->getSetting( 'modification_count' ), 
-                'wp-api-privacy' 
-            )), 
+            esc_html(
+                _n( 
+                    'The number of API requests that have been modified since activation is: %s', 
+                    'The number of API requests that have been modified since activation are: %s', 
+                    $this->getSetting( 'modification_count' ), 
+                    'wp-api-privacy' 
+                )
+            ), 
             '<strong>' . number_format( $this->getSetting( 'modification_count' ) ) . '</strong>'
         );
         ?></p>
@@ -24,7 +26,7 @@
             <tbody>
                 <?php foreach( $this->settingsSections as $name => $data ) { ?>
                     <tr>
-                        <th><?php echo esc_html( $data[ 0 ] ); ?></th>
+                        <th><?php esc_html_e( $data[ 0 ] ); ?></th>
                         <td>
                             <fieldset>
                                 <?php foreach( $data[ 1 ] as $setting ) { ?>
