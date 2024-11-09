@@ -14,7 +14,6 @@ class ApiPrivacy extends GithubUpdater {
     private const USER_AGENT = 'WordPress/Private';
 
     private static $instance = null;
-    private $disableSsl = false;
 
     protected $settings = null;
 
