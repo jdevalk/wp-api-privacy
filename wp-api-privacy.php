@@ -30,6 +30,8 @@ define( 'PRIVACY_PATH', dirname( __FILE__ ) );
 require_once( dirname( __FILE__ ) . '/src/api-privacy.php' );
 
 function initialize_privacy( $params ) {
+    load_plugin_textdomain( 'wp-api-privacy', false, 'wp-api-privacy/lang' );
+
     ApiPrivacy::instance()->init();
 }
 
