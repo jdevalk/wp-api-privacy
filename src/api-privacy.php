@@ -19,6 +19,8 @@ class ApiPrivacy extends GithubUpdater {
     protected $settings = null;
 
     protected function __construct() {
+        $this->settings = new Settings();
+
         // set up our user-agent filter
         add_filter( 'http_request_args', array( $this, 'modifyUserAgent' ), 0, 2 );
         add_filter( 'rest_prepare_user', array( $this, 'modifyRestUser' ), 10, 3 );
@@ -31,8 +33,6 @@ class ApiPrivacy extends GithubUpdater {
             'wp-api-privacy',
             'main'
         );
-
-        $this->settings = new Settings();
     }
 
     public function init() {
@@ -45,11 +45,11 @@ class ApiPrivacy extends GithubUpdater {
 
     public function modifyCurl( $handle, $params, $url ) {
         if ( $handle ) {
-            if ( $this->getOption( 'disable_https' ) ) {
+            if ( $this->getSetting( 'disable_https' ) ) {
                 $url = str_replace( 'https://', 'http://', $url );
             }
 
-            if ( $this->getOption( 'strip_core_data' ) && strpos( $url, 'api.wordpress.org/core/version-check' ) !== false ) {
+            if ( $this->getSetting( 'strip_core_data' ) && strpos( $url, 'api.wordpress.org/core/version-check' ) !== false ) {
                 $urlData = parse_url( $url );
                 if ( $urlData[ 'query' ] ) {
                     $queryData = explode( '&', $urlData[ 'query' ] );
@@ -93,7 +93,7 @@ class ApiPrivacy extends GithubUpdater {
     }
 
     public function modifyRestUser( $response, $user, $request ) {
-        if ( $this->getOption( 'strip_user_logins' ) && isset( $response->data ) && isset( $response->data[ 'slug' ] ) ) {
+        if ( $this->getSetting( 'strip_user_logins' ) && isset( $response->data ) && isset( $response->data[ 'slug' ] ) ) {
             unset( $response->data[ 'slug' ] );
         }
 
@@ -102,12 +102,12 @@ class ApiPrivacy extends GithubUpdater {
 
     public function modifyUserAgent( $params, $url ) {
         // Remove site URL from user agent as this is a privacy issue
-        if ( $this->getOption( 'strip_user_agent' ) && isset( $params[ 'user-agent' ] ) ) {
+        if ( $this->getSetting( 'strip_user_agent' ) && isset( $params[ 'user-agent' ] ) ) {
             $params[ 'user-agent' ] = ApiPrivacy::USER_AGENT;
         }
    
         // Remove plugins hosted off-site, nobody needs to know these - for now this just uses the 'Update URI' parameter
-        if ( $this->getOption( 'strip_plugins' ) && strpos( $url, 'wordpress.org/plugins/update-check/' ) !== false ) {
+        if ( $this->getSetting( 'strip_plugins' ) && strpos( $url, 'wordpress.org/plugins/update-check/' ) !== false ) {
             $decodedJson = json_decode( $params[ 'body' ][ 'plugins'] );
             if ( $decodedJson ) {
                 // check for plugin info
@@ -134,7 +134,7 @@ class ApiPrivacy extends GithubUpdater {
                 }
                 $params[ 'body' ][ 'plugins' ] = json_encode( $decodedJson );
             }
-        } else if ( $this->getOption( 'strip_themes' ) && strpos( $url, 'wordpress.org/themes/update-check/' ) !== false ) { 
+        } else if ( $this->getSetting( 'strip_themes' ) && strpos( $url, 'wordpress.org/themes/update-check/' ) !== false ) { 
             $decodedJson = json_decode( $params[ 'body' ][ 'themes'] );
             if ( $decodedJson ) {
                 // check for theme info
@@ -155,7 +155,7 @@ class ApiPrivacy extends GithubUpdater {
                 }
                 $params[ 'body' ][ 'themes' ] = json_encode( $decodedJson );    
             }    
-        } if ( $this->getOption( 'strip_core_headers' ) && strpos( $url, 'api.wordpress.org/core/version-check' ) !== false ) {
+        } if ( $this->getSetting( 'strip_core_headers' ) && strpos( $url, 'api.wordpress.org/core/version-check' ) !== false ) {
             if ( isset( $params[ 'headers' ] ) ) {
                 if ( isset( $params[ 'headers' ][ 'wp_install' ] ) ) {
                     unset( $params[ 'headers' ][ 'wp_install' ] );
