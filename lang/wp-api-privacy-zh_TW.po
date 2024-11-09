@@ -1,22 +1,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP API Privacy\n"
-"POT-Creation-Date: 2024-11-08 21:38-0800\n"
-"PO-Revision-Date: 2024-11-08 22:19-0800\n"
+"POT-Creation-Date: 2024-11-09 12:48-0800\n"
+"PO-Revision-Date: 2024-11-09 12:48-0800\n"
 "Last-Translator: Alex Lion <learnwithalex@gmail.com>\n"
 "Language-Team: Alex Lion <learnwithalex@gmail.com>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: wp-api-privacy.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;"
-"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
-"esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
@@ -61,7 +62,7 @@ msgid "Your settings have been saved"
 msgstr "設定已儲存。"
 
 #. Plugin Name of the plugin/theme
-#: src/settings.php:158 src/settings.php:159
+#: src/settings.php:164 src/settings.php:165 templates/options-page.php:2
 msgid "WP API Privacy"
 msgstr "WP API Privacy"
 
@@ -69,7 +70,15 @@ msgstr "WP API Privacy"
 msgid "You can configure the options for API privacy here."
 msgstr "網站管理員可以在這裡組態 API 隱私權的選項。"
 
-#: templates/options-page.php:27
+#: templates/options-page.php:9
+#, php-format
+msgid ""
+"The number of API requests that have been modified since activation is: %s"
+msgid_plural ""
+"The number of API requests that have been modified since activation are: %s"
+msgstr[0] "這個外掛啟用後，經過修改的 API 要求數量: %s"
+
+#: templates/options-page.php:39
 msgid "Save Changes"
 msgstr "儲存設定"
 

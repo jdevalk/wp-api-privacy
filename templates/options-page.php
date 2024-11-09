@@ -1,16 +1,16 @@
 <div class="wrap">
-    <h1><?php echo esc_html( __( 'WP API Privacy', 'wp-api-privacy' ) ); ?></h1>
+    <h1><?php esc_html_e( 'WP API Privacy', 'wp-api-privacy' ); ?></h1>
 
-    <p><?php esc_html( _e( 'You can configure the options for API privacy here.', 'wp-api-privacy' ) ); ?><br /><?php 
+    <p><?php esc_html_e( 'You can configure the options for API privacy here.', 'wp-api-privacy' ); ?><br /><?php 
        
         echo sprintf( 
              /* translators: contains a number indicating the number of requests intercepted */
-            _n( 
-                esc_html( 'The number of API requests that have been modified since activation is: %s' ), 
-                esc_html( 'The number of API requests that have been modified since activation are: %s' ), 
+            esc_html(_n( 
+                'The number of API requests that have been modified since activation is: %s', 
+                'The number of API requests that have been modified since activation are: %s', 
                 $this->getSetting( 'modification_count' ), 
                 'wp-api-privacy' 
-            ), 
+            )), 
             '<strong>' . number_format( $this->getSetting( 'modification_count' ) ) . '</strong>'
         );
         ?></p>
@@ -36,6 +36,6 @@
                 <?php }?> 
             </tbody>
         </table>
-        <input type="submit" id="submit" class="button button-primary" name="submit" value="<?php esc_attr( _e( 'Save Changes', 'wp-api-privacy' ) ); ?>" />
+        <input type="submit" id="submit" class="button button-primary" name="submit" value="<?php esc_attr_e( 'Save Changes', 'wp-api-privacy' ); ?>" />
     </form>
 </div>
