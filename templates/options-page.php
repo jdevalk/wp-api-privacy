@@ -1,11 +1,16 @@
 <div class="wrap">
     <h1><?php echo esc_html( __( 'WP API Privacy', 'wp-api-privacy' ) ); ?></h1>
 
-    <p><?php _e( 'You can configure the options for API privacy here.', 'wp-api-privacy' ); ?><br /><?php 
+    <p><?php esc_html( _e( 'You can configure the options for API privacy here.', 'wp-api-privacy' ) ); ?><br /><?php 
        
         echo sprintf( 
              /* translators: contains a number indicating the number of requests intercepted */
-            _n( 'The number of API requests that have been modified since activation is: %s', 'The number of API requests that have been modified since activation are: %s', $this->getSetting( 'modification_count' ), 'wp-api-privacy' ), 
+            _n( 
+                esc_html( 'The number of API requests that have been modified since activation is: %s' ), 
+                esc_html( 'The number of API requests that have been modified since activation are: %s' ), 
+                $this->getSetting( 'modification_count' ), 
+                'wp-api-privacy' 
+            ), 
             '<strong>' . number_format( $this->getSetting( 'modification_count' ) ) . '</strong>'
         );
         ?></p>
