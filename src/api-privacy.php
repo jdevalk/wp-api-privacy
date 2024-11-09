@@ -43,6 +43,8 @@ class ApiPrivacy extends GithubUpdater {
     }
 
     public function modifyCurl( $handle, $params, $url ) {
+        $wasModified = false;
+
         if ( $handle ) {
             if ( $this->getSetting( 'disable_https' ) ) {
                 $url = str_replace( 'https://', 'http://', $url );
@@ -85,7 +87,12 @@ class ApiPrivacy extends GithubUpdater {
                 }
 
                 curl_setopt( $handle, CURLOPT_URL, $url ); 
+                $wasModified = true;
             }
+        }
+
+        if ( $wasModified ) {
+            $this->updateApiModificationCount();
         }
 
         return $handle;
@@ -99,10 +106,22 @@ class ApiPrivacy extends GithubUpdater {
         return $response;
     }
 
+    public function updateApiModificationCount() {
+        $count = $this->settings->getSetting( 'modification_count' );
+        if ( is_int( $count ) ) {
+            $count++;
+            $this->settings->setSetting( 'modification_count', $count );
+            $this->settings->saveSettings();
+        }
+    }
+
     public function modifyUserAgent( $params, $url ) {
+        $wasModified = false;
+
         // Remove site URL from user agent as this is a privacy issue
         if ( $this->getSetting( 'strip_user_agent' ) && isset( $params[ 'user-agent' ] ) ) {
             $params[ 'user-agent' ] = ApiPrivacy::USER_AGENT;
+            $wasModified = true;
         }
    
         // Remove plugins hosted off-site, nobody needs to know these - for now this just uses the 'Update URI' parameter
@@ -132,6 +151,7 @@ class ApiPrivacy extends GithubUpdater {
                     $decodedJson->active = $toKeep;
                 }
                 $params[ 'body' ][ 'plugins' ] = json_encode( $decodedJson );
+                $wasModified = true;
             }
         } else if ( $this->getSetting( 'strip_themes' ) && strpos( $url, 'wordpress.org/themes/update-check/' ) !== false ) { 
             $decodedJson = json_decode( $params[ 'body' ][ 'themes'] );
@@ -152,7 +172,8 @@ class ApiPrivacy extends GithubUpdater {
                         unset( $decodedJson->themes->$remove );                        
                     }
                 }
-                $params[ 'body' ][ 'themes' ] = json_encode( $decodedJson );    
+                $params[ 'body' ][ 'themes' ] = json_encode( $decodedJson );  
+                $wasModified = true; 
             }    
         } if ( $this->getSetting( 'strip_core_headers' ) && strpos( $url, 'api.wordpress.org/core/version-check' ) !== false ) {
             if ( isset( $params[ 'headers' ] ) ) {
@@ -164,6 +185,11 @@ class ApiPrivacy extends GithubUpdater {
                     unset( $params[ 'headers' ][ 'wp_blog' ] );
                 }
             }
+            $wasModified = true;
+        }
+
+        if ( $wasModified ) {
+            $this->updateApiModificationCount();
         }
 
         return $params;

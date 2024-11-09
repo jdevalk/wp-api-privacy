@@ -121,6 +121,10 @@ class Settings {
         return $this->settings->$name;
     }
 
+    public function setSetting( $name, $value ) {
+        $this->settings->$name = $value;
+    }
+
     public function renderOneSetting( $setting ) {
         switch( $setting->type ) {
             case 'checkbox':
@@ -145,6 +149,8 @@ class Settings {
         $settings->strip_core_headers = true;
         $settings->strip_user_logins = true;
         $settings->disable_https = false;
+
+        $settings->modification_count = 0;
 
         return $settings;
     }
