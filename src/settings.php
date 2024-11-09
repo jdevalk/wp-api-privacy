@@ -8,6 +8,7 @@
 namespace WP_Privacy\WP_API_Privacy;
 
 class Settings {
+    // The WordPress settings key
     protected const SETTING_KEY = "wp_api_privacy_settings";
     protected const UPDATED_KEY = "wp_api_privacy_updated";
 
@@ -49,7 +50,7 @@ class Settings {
 
     public function doOptionsHeader() {
         if ( get_option( Settings::UPDATED_KEY, false ) ) {
-            echo '<div class="notice notice-success settings-error is-dismissible"><p>' . __( 'Your settings have been saved', 'wp-api-privacy' ) . '</p></div>';
+            echo '<div class="notice notice-success settings-error is-dismissible"><p>' . esc_html( __( 'Your settings have been saved', 'wp-api-privacy' ) ) . '</p></div>';
             delete_option( Settings::UPDATED_KEY );
         }
     }

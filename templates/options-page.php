@@ -24,6 +24,6 @@
                 <?php }?> 
             </tbody>
         </table>
-        <input type="submit" id="submit" class="button button-primary" name="submit" value="<?php _e( 'Save Changes', 'wp-api-privacy' ); ?>" />
+        <input type="submit" id="submit" class="button button-primary" name="submit" value="<?php esc_attr( _e( 'Save Changes', 'wp-api-privacy' ) ); ?>" />
     </form>
 </div>
