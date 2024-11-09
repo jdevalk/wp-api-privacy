@@ -25,6 +25,9 @@ class ApiPrivacy extends GithubUpdater {
         add_filter( 'rest_prepare_user', array( $this, 'modifyRestUser' ), 10, 3 );
         add_action( 'http_api_curl', array( $this, 'modifyCurl' ), 10, 3 );
 
+        // Plugin action links
+        add_filter( 'plugin_action_links_' . plugin_basename( PRIVACY_MAIN_FILE ), array( $this, 'addActionLinks' ) );
+
         // initialize the updater
         parent::__construct( 
             'wp-api-privacy/wp-api-privacy.php',
@@ -40,6 +43,14 @@ class ApiPrivacy extends GithubUpdater {
 
     public function getSetting( $name ) {
         return $this->settings->getSetting( $name );
+    }
+
+    public function addActionLinks( $actions ) {
+        $links = array(
+            '<a href="' . admin_url( 'options-general.php?page=api-privacy' ) . '">' . __( 'Settings', 'wp-api-privacy' ) . '</a>'
+        );
+
+        return array_merge( $links, $actions );
     }
 
     public function modifyCurl( $handle, $params, $url ) {

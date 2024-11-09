@@ -26,7 +26,7 @@
             <tbody>
                 <?php foreach( $this->settingsSections as $name => $data ) { ?>
                     <tr>
-                        <th><?php esc_html_e( $data[ 0 ] ); ?></th>
+                        <th><?php echo esc_html( $data[ 0 ] ); ?></th>
                         <td>
                             <fieldset>
                                 <?php foreach( $data[ 1 ] as $setting ) { ?>
