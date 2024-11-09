@@ -14,6 +14,8 @@
     Stable: 1.0.3
     Text Domain: wp-api-privacy
     Domain Path: /lang
+    GitHub Plugin URI: wp-privacy/wp-api-privacy
+    Primary Branch: main
 
     Copyright (C) 2024 by Duane Storey - All Rights Reserved
     You may use, distribute and modify this code under the
