@@ -3,9 +3,9 @@
 
     <p><?php esc_html_e( 'You can configure the options for API privacy here.', 'wp-api-privacy' ); ?><br /><?php 
        
-        echo sprintf( 
-             /* translators: contains a number indicating the number of requests intercepted */
+        echo sprintf(   
             esc_html(
+                /* translators: contains a number indicating the number of requests intercepted */
                 _n( 
                     'The number of API requests that have been modified since activation is: %s', 
                     'The number of API requests that have been modified since activation are: %s', 
