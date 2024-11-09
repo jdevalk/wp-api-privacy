@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h1>WP API Privacy</h1>
+    <h1><?php echo esc_html( __( 'WP API Privacy', 'wp-api-privacy' ) ); ?></h1>
 
     <p><?php _e( 'You can configure the options for API privacy here.', 'wp-api-privacy' ); ?></p>
 

@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the WP API Privacy plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP API Privacy 1.1.0\n"
+"Project-Id-Version: WP API Privacy 1.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-api-privacy\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-09T03:45:24+00:00\n"
+"POT-Creation-Date: 2024-11-09T07:05:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-api-privacy\n"
@@ -18,6 +18,7 @@ msgstr ""
 #: wp-api-privacy.php
 #: src/settings.php:158
 #: src/settings.php:159
+#: templates/options-page.php:2
 msgid "WP API Privacy"
 msgstr ""
 
