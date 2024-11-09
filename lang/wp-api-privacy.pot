@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the WP API Privacy plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP API Privacy 1.1.4\n"
+"Project-Id-Version: WP API Privacy 1.1.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-api-privacy\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-09T22:20:47+00:00\n"
+"POT-Creation-Date: 2024-11-09T22:33:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-api-privacy\n"
@@ -51,11 +51,11 @@ msgid "Options"
 msgstr ""
 
 #: src/settings.php:33
-msgid "Strip site URL from User-Agent header on all WP API requests"
+msgid "Strip site URL and version from User-Agent header on all WP API requests"
 msgstr ""
 
 #: src/settings.php:34
-msgid "Strip site URL from User-Agent header on all other requests"
+msgid "Strip site URL and version from User-Agent header on all other requests"
 msgstr ""
 
 #: src/settings.php:35

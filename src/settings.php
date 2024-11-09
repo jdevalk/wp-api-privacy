@@ -30,8 +30,8 @@ class Settings {
             'options', 
             __( 'Options', 'wp-api-privacy' ),
            array(
-                $this->addSetting( 'checkbox', 'strip_user_agent', __( 'Strip site URL from User-Agent header on all WP API requests', 'wp-api-privacy' ) ),
-                $this->addSetting( 'checkbox', 'strip_user_agent_non_wp', __( 'Strip site URL from User-Agent header on all other requests', 'wp-api-privacy' ) ),
+                $this->addSetting( 'checkbox', 'strip_user_agent', __( 'Strip site URL and version from User-Agent header on all WP API requests', 'wp-api-privacy' ) ),
+                $this->addSetting( 'checkbox', 'strip_user_agent_non_wp', __( 'Strip site URL and version from User-Agent header on all other requests', 'wp-api-privacy' ) ),
                 $this->addSetting( 'checkbox', 'strip_plugins', __( 'Strip external plugins from API calls', 'wp-api-privacy' ) ),
                 $this->addSetting( 'checkbox', 'strip_themes', __( 'Strip external themes from API calls', 'wp-api-privacy' ) ),
                 $this->addSetting( 'checkbox', 'strip_core_data', __( 'Modify data sent to core update API', 'wp-api-privacy' ) ),
