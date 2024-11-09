@@ -9,13 +9,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-08T23:54:35+00:00\n"
+"POT-Creation-Date: 2024-11-09T00:08:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-api-privacy\n"
 
 #. Plugin Name of the plugin
 #: wp-api-privacy.php
+#: src/settings.php:157
+#: src/settings.php:158
 msgid "WP API Privacy"
 msgstr ""
 
@@ -60,16 +62,23 @@ msgid "Modify data sent to core update API"
 msgstr ""
 
 #: src/settings.php:36
+msgid "Strip wp_blog and wp_install headers"
+msgstr ""
+
+#: src/settings.php:37
 msgid "Strip user login info from JSON API"
 msgstr ""
 
 #: src/settings.php:43
-msgid "Your settings have been saved"
+msgid "Debug"
 msgstr ""
 
-#: src/settings.php:146
-#: src/settings.php:147
-msgid "API Privacy"
+#: src/settings.php:45
+msgid "Disable HTTPs for packet sniffing (should only be used for testing)"
+msgstr ""
+
+#: src/settings.php:52
+msgid "Your settings have been saved"
 msgstr ""
 
 #: templates/options-page.php:4

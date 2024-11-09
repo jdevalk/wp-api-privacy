@@ -29,11 +29,20 @@ class Settings {
             'options', 
             __( 'Options', 'wp-api-privacy' ),
            array(
-                $this->addSetting( 'checkbox', 'stripUserAgent', __( 'Strip site URL from User-Agent header on all requests', 'wp-api-privacy' ) ),
-                $this->addSetting( 'checkbox', 'stripPlugins', __( 'Strip external plugins from API calls', 'wp-api-privacy' ) ),
-                $this->addSetting( 'checkbox', 'stripThemes', __( 'Strip external themes from API calls', 'wp-api-privacy' ) ),
-                $this->addSetting( 'checkbox', 'stripCoreData', __( 'Modify data sent to core update API', 'wp-api-privacy' ) ),
-                $this->addSetting( 'checkbox', 'stripUserLogins', __( 'Strip user login info from JSON API', 'wp-api-privacy' ) )
+                $this->addSetting( 'checkbox', 'strip_user_agent', __( 'Strip site URL from User-Agent header on all requests', 'wp-api-privacy' ) ),
+                $this->addSetting( 'checkbox', 'strip_plugins', __( 'Strip external plugins from API calls', 'wp-api-privacy' ) ),
+                $this->addSetting( 'checkbox', 'strip_themes', __( 'Strip external themes from API calls', 'wp-api-privacy' ) ),
+                $this->addSetting( 'checkbox', 'strip_core_data', __( 'Modify data sent to core update API', 'wp-api-privacy' ) ),
+                $this->addSetting( 'checkbox', 'strip_core_headers', __( 'Strip wp_blog and wp_install headers', 'wp-api-privacy' ) ),
+                $this->addSetting( 'checkbox', 'strip_user_logins', __( 'Strip user login info from JSON API', 'wp-api-privacy' ) )
+           )
+        );
+
+        $this->addSettingsSection( 
+            'debug', 
+            __( 'Debug', 'wp-api-privacy' ),
+           array(
+                $this->addSetting( 'checkbox', 'disable_https', __( 'Disable HTTPs for packet sniffing (should only be used for testing)', 'wp-api-privacy' ) ),
            )
         );
     }
@@ -84,7 +93,7 @@ class Settings {
             // merge in defaults to ensure new settings are added to old
             foreach( $defaults as $key => $value ) {
                 if ( !isset( $settings->$key ) ) {
-                    $settings->key = $defaults->$key;
+                    $settings->$key = $defaults->$key;
                 }
             }
             // update merged settings
@@ -128,11 +137,13 @@ class Settings {
         $settings = new \stdClass;
 
         // Adding default settings
-        $settings->stripUserAgent = true;
-        $settings->stripPlugins = true;
-        $settings->stripThemes = true;
-        $settings->stripCoreData = true;
-        $settings->stripUserLogins = true;
+        $settings->strip_user_agent = true;
+        $settings->strip_plugins = true;
+        $settings->strip_themes = true;
+        $settings->strip_core_data = true;
+        $settings->strip_core_headers = true;
+        $settings->strip_user_logins = true;
+        $settings->disable_https = false;
 
         return $settings;
     }
@@ -143,8 +154,8 @@ class Settings {
 
     public function setupSettingsPage() {
         add_options_page(
-            __( 'API Privacy', 'wp-api-privacy' ),
-            __( 'API Privacy', 'wp-api-privacy' ),
+            __( 'WP API Privacy', 'wp-api-privacy' ),
+            __( 'WP API Privacy', 'wp-api-privacy' ),
             'manage_options',
             'api-privacy',
             array( $this, 'renderSettingsPage' )
