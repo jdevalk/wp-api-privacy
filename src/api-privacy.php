@@ -126,23 +126,64 @@ class ApiPrivacy extends GithubUpdater {
         }
     }
 
+    public function getUniqueSiteHash() {
+        if ( defined( 'NONCE_KEY' ) ) {
+            return 'https://' . md5( NONCE_KEY . get_bloginfo( 'url' ) ) . '.com';
+        } else return 'https://' . md5( get_bloginfo( 'url' ) ) . '.com';
+    }
+
     public function modifyUserAgent( $params, $url ) {
         $wasModified = false;
 
         // Remove site URL from user agent as this is a privacy issue
         if ( isset( $params[ 'user-agent' ] ) ) {
-            if ( strpos( $url, 'api.wordpress.org/' ) !== false ) {
-                // wordpress api
-                if ( $this->getSetting( 'strip_user_agent' ) ) {
-                    $params[ 'user-agent' ] = ApiPrivacy::USER_AGENT;
-                    $wasModified = true;
-                }
+            $behaviour = $this->getSetting( 'user_agent_behaviour' );
+            $isWp = ( strpos( $url, 'api.wordpress.org/' ) !== false );
+
+            // check to see if we're stripping the version
+            if ( $this->getSetting( 'strip_wp_version' ) ) {
+                $userAgent = 'WordPress/Private';
+                $wasModified = true;
             } else {
-                // non wordpress api
-                if ( $this->getSetting( 'strip_user_agent_non_wp' ) ) {
-                    $params[ 'user-agent' ] = ApiPrivacy::USER_AGENT;
-                    $wasModified = true;
+                $userAgent = 'WordPress/' . get_bloginfo( 'version' );
+            }
+
+            // check to see what we're doing for URL
+            if ( $behaviour != 'none' ) {
+                switch( $behaviour ) {
+                    case 'strip_wp':
+                        if ( !$isWp ) {
+                            // if it's not WordPress, we need to add the URL back on
+                            $userAgent .= '; ' . get_bloginfo( 'url' );
+                        } else {
+                            $wasModified = true;
+                        }
+                        break;
+                    case 'strip_all':
+                        // no URL provided at all
+                        $wasModified = true;
+                        break;
+                    case 'modify_wp':
+                        if ( $isWp ) {
+                            $userAgent .= '; ' . $this->getUniqueSiteHash();
+                            $wasModified = true;
+                        } else {
+                            // leave in tact for non WordPress
+                            $userAgent .= '; ' . get_bloginfo( 'url' );
+                        }
+                        break;
+                    case 'modify_all':
+                        // Modify it always
+                        $userAgent .= '; ' . $this->getUniqueSiteHash();
+                        $wasModified = true;
+                        break;
+                    default:
+                        break;
                 }
+
+                $params[ 'user-agent' ] = $userAgent;
+            } else {
+                $userAgent .= '; ' . get_bloginfo( 'url' );
             }
         }
    

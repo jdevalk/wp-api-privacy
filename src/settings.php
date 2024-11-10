@@ -27,11 +27,28 @@ class Settings {
         }
 
         $this->addSettingsSection( 
+            'user-agent', 
+            __( 'User-Agent URL', 'wp-api-privacy' ),
+           array(
+                $this->addSetting( 
+                    'select', 
+                    'user_agent_behaviour', 
+                    array( 
+                        'none' => __( 'No changes', 'wp-api-privacy' ),
+                        'strip_wp' => __( 'Strip site URL from all WP API requests', 'wp-api-privacy' ),
+                        'strip_all' => __( 'Strip site URL from all requests', 'wp-api-privacy' ),
+                        'modify_wp' => __( 'Replace URL with a unique hash for all WP API requests', 'wp-api-privacy' ),
+                        'modify_all' => __( 'Replace URL with a unique hash for all requests', 'wp-api-privacy' )
+                    )
+                )
+           )
+        );
+
+        $this->addSettingsSection( 
             'options', 
             __( 'Options', 'wp-api-privacy' ),
            array(
-                $this->addSetting( 'checkbox', 'strip_user_agent', __( 'Strip site URL and version from User-Agent header on all WP API requests', 'wp-api-privacy' ) ),
-                $this->addSetting( 'checkbox', 'strip_user_agent_non_wp', __( 'Strip site URL and version from User-Agent header on all other requests', 'wp-api-privacy' ) ),
+                $this->addSetting( 'checkbox', 'strip_wp_version', __( 'Strip WordPress version information from User-Agent', 'wp-api-privacy' ) ),
                 $this->addSetting( 'checkbox', 'strip_plugins', __( 'Strip external plugins from API calls', 'wp-api-privacy' ) ),
                 $this->addSetting( 'checkbox', 'strip_themes', __( 'Strip external themes from API calls', 'wp-api-privacy' ) ),
                 $this->addSetting( 'checkbox', 'strip_core_data', __( 'Modify data sent to core update API', 'wp-api-privacy' ) ),
@@ -72,7 +89,9 @@ class Settings {
                             $this->settings->$name = false;
                         }
                     } else {
-                        // not a checkbox
+                        if ( isset( $_POST[ 'wpsetting_' . $name ] ) ) {
+                            $this->settings->$name = $_POST[ 'wpsetting_' . $name ];
+                        }
                     }
                 }
 
@@ -98,6 +117,14 @@ class Settings {
                     $settings->$key = $defaults->$key;
                 }
             }
+
+            // removing deprecated settings
+            foreach( $settings as $key => $value ) {
+                if ( !isset( $defaults->$key ) ) {
+                    unset( $settings->$key );
+                }
+            }
+
             // update merged settings
             $this->settings = $settings;
         } else {
@@ -136,6 +163,15 @@ class Settings {
                 echo esc_html( $setting->desc ) . '</label>';
                 echo "<br>";
                 break;
+            case 'select':
+                echo '<select name="wpsetting_'. esc_attr( $setting->name ) . '">';
+                $currentSetting = $this->getSetting( $setting->name );
+                foreach( $setting->desc as $key => $value ) {
+                    $selected = ( $currentSetting == $key ) ? ' selected' : '';
+                    echo '<option value="' . esc_attr( $key ) . '"' . $selected . '>' . esc_html( $value ) . '</option>';
+                }
+                echo '</select><br>';
+                break;
         }
     }
 
@@ -143,8 +179,8 @@ class Settings {
         $settings = new \stdClass;
 
         // Adding default settings
-        $settings->strip_user_agent = true;
-        $settings->strip_user_agent_non_wp = false;
+        $settings->user_agent_behaviour = 'strip_wp';
+        $settings->strip_wp_version = true;
 
         $settings->strip_plugins = true;
         $settings->strip_themes = true;
