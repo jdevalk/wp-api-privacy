@@ -27,7 +27,7 @@ The composer.json was updated to list the project as a 'wordpress-plugin'.  It c
 
 ### Version 1.0.3 - Nov 8th, 2024
 
-Fixed a bug related to theme mismatch (thanks [Craig Riley](https://github.com/craigrileyuk).  Added ability to force-look for an update via the the WordPress admin.  Starting initial work on settings page and internationalization.
+Fixed a bug related to theme mismatch (thanks [Craig Riley](https://github.com/craigrileyuk)).  Added ability to force-look for an update via the the WordPress admin.  Starting initial work on settings page and internationalization.
 
 ### Version 1.0.2 - Nov 8th, 2024
 
