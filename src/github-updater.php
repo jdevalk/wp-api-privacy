@@ -38,7 +38,7 @@ class GitHubUpdater {
                 // Take this out for now, need to think about API considerations
                 // $this->deleteTransients();
             }
-            
+        
             $this->checkForUpdate();
 
             add_filter( 'plugins_api', [ $this, 'handlePluginInfo' ], 20, 3 );
