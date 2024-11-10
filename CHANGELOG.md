@@ -1,3 +1,9 @@
+### Version 1.1.6 - Nov 10th, 2024
+
+- Added: New settings for the user-agent to add a unique hash instead of removing the URL completely
+- Added: a CHANGELOG.md to support Git Updater
+- Added: additional banner assets for Git Updater
+
 ### Version 1.1.5 - Nov 9th, 2024
 
 - Added: German translations (thanks to Udo Meisen)
