@@ -144,6 +144,10 @@ class GitHubUpdater {
     private function generateChangeLog( $releaseInfo ) {
         $changeLog = '';
         foreach( $releaseInfo as $release ) {
+            if ( $release->target_commitish != $this->githubBranch ) {
+                continue;
+            }
+
             $changeLog .= '<strong>' . $release->tag_name .  ' - ' . $release->name . '</strong>';
             $changeLog .= '<p>' . str_replace( "\r\n", "<br>", $release->body ) . '</p>';
         }
@@ -170,7 +174,7 @@ class GitHubUpdater {
 
             if ( $latestVersion ) {
                 foreach( $releaseInfo as $release ) {
-                    if ( $release->tag_name = $latestVersion ) {
+                    if ( $release->tag_name = $latestVersion && $release->target_commitish == $this->githubBranch ) {
                         // found
                         $this->updateInfo = new \stdClass;
 
