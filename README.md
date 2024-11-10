@@ -5,6 +5,8 @@ The default WordPress installation from wordpress.org automatically transmits ex
 This plugin seeks to limit that information, attempting to further protect your privacy in the process. Simply install this plugin and activate it, and various aspects of WordPress that 
 are questionable from a privacy perspective will be modified.  
 
+To find out about recent changes, please [read the Changelog](CHANGELOG.md).
+
 ## Modifications Made 
 
 Default outgoing HTTP requests to third-party services like the plugin and theme update mechanism at WordPress.org contains site and version information in the User-Agent header.  For example, all requests contain your website name in the form of http://mysite.com, and a version string such as 6.6, giving third-parties detailed information about your site.  Combining this information with your IP address (which all servers can determine from incoming requests), provides the recipient with potentially intrusive insight into every website using the WordPress platform. 
