@@ -1,0 +1,132 @@
+# Copyright (C) 2024 Duane Storey
+# This file is distributed under the same license as the WP API Privacy plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP API Privacy 1.1.5\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-api-privacy\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-11-10T02:31:42+00:00\n"
+"PO-Revision-Date: 2024-11-10 21:49+0330\n"
+"X-Generator: Poedit 2.2\n"
+"X-Domain: wp-api-privacy\n"
+"Last-Translator: Mohammad Anbarestany <m_anbarestany@hotmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"Language: fa_IR\n"
+
+#. Plugin Name of the plugin
+#: wp-api-privacy.php src/settings.php:203 src/settings.php:204
+#: templates/options-page.php:2
+msgid "WP API Privacy"
+msgstr "حریم خصوصی برای WP API"
+
+#. Plugin URI of the plugin
+#: wp-api-privacy.php
+msgid "https://github.com/wp-privacy/wp-api-privacy"
+msgstr "https://github.com/wp-privacy/wp-api-privacy"
+
+#. Description of the plugin
+#: wp-api-privacy.php
+msgid ""
+"Strips potentially identifying information from outbound requests to the "
+"WordPress.org API"
+msgstr ""
+"اطلاعات شناسایی کننده (حساس) از درخواست‌های خروجی به API وبسایت WordPress."
+"org را حذف می کند"
+
+#. Author of the plugin
+#: wp-api-privacy.php
+msgid "Duane Storey"
+msgstr "دووئین استوری"
+
+#. Author URI of the plugin
+#: wp-api-privacy.php
+msgid "https://duanestorey.com"
+msgstr "https://duanestorey.com"
+
+#: src/api-privacy.php:50
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: src/settings.php:31
+msgid "User-Agent URL"
+msgstr "آدرس User-Agent"
+
+#: src/settings.php:37
+msgid "No changes"
+msgstr "بدون  تغییرات"
+
+#: src/settings.php:38
+msgid "Strip site URL from all WP API requests"
+msgstr "حذف آدرس سایت از تمام درخواست‌های API وردپرس"
+
+#: src/settings.php:39
+msgid "Strip site URL from all requests"
+msgstr "حذف آدرس سایت از تمام درخواست‌ها"
+
+#: src/settings.php:40
+msgid "Replace URL with a unique hash for all WP API requests"
+msgstr "جایگزینی آدرس با هش یکتا برای تمام درخواست‌های API وردپرس"
+
+#: src/settings.php:41
+msgid "Replace URL with a unique hash for all requests"
+msgstr "جایگزینی آدرس با هش یکتا برای تمام درخواست‌ها"
+
+#: src/settings.php:49
+msgid "Options"
+msgstr "گزینه ها"
+
+#: src/settings.php:51
+msgid "Strip WordPress version information from User-Agent"
+msgstr "حذف اطلاعات نسخه وردپرس از User-Agent"
+
+#: src/settings.php:52
+msgid "Strip external plugins from API calls"
+msgstr "حذف افزونه‌های خارجی از تماس‌های API"
+
+#: src/settings.php:53
+msgid "Strip external themes from API calls"
+msgstr "حذف قالب‌های خارجی از تماس‌های API"
+
+#: src/settings.php:54
+msgid "Modify data sent to core update API"
+msgstr "تغییر داده‌های ارسالی به API هسته بروزرسانی"
+
+#: src/settings.php:55
+msgid "Strip wp_blog and wp_install headers"
+msgstr "حذف هدرهای wp_blog و wp_install"
+
+#: src/settings.php:56
+msgid "Strip user login info from JSON API"
+msgstr "حذف اطلاعات ورود کاربر از JSON API"
+
+#: src/settings.php:62
+msgid "Debug"
+msgstr "اشکال‌زادیی"
+
+#: src/settings.php:64
+msgid "Disable HTTPs for packet sniffing (should only be used for testing)"
+msgstr "غیرفعال کردن HTTPS برای بررسی بسته‌ها (فقط برای آزمایش و بررسی)"
+
+#: src/settings.php:71
+msgid "Your settings have been saved"
+msgstr "تنظیمات شما ذخیره شد"
+
+#: templates/options-page.php:4
+msgid "You can configure the options for API privacy here."
+msgstr "شما می‌توانید گزینه‌های حریم خصوصی API را اینجا پیکربندی کنید."
+
+#. translators: contains a number indicating the number of requests intercepted
+#: templates/options-page.php:9
+msgid ""
+"The number of API requests that have been modified since activation is: %s"
+msgid_plural ""
+"The number of API requests that have been modified since activation are: %s"
+msgstr[0] "تعداد درخواست‌های API که از زمان فعال‌سازی تغییر کرده‌اند:  %s"
+msgstr[1] "تعداد درخواست‌های API که از زمان فعال‌سازی تغییر کرده است:  %s"
+
+#: templates/options-page.php:41
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
