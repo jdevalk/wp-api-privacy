@@ -1,3 +1,8 @@
+### Version 1.1.7 - Nov 10th, 2024
+
+- fixed issue with tag comparison
+- added check for main branch only updates
+
 ### Version 1.1.6 - Nov 10th, 2024
 
 - Added: New settings for the user-agent to add a unique hash instead of removing the URL completely
