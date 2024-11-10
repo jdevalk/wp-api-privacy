@@ -174,7 +174,7 @@ class GitHubUpdater {
 
             if ( $latestVersion ) {
                 foreach( $releaseInfo as $release ) {
-                    if ( $release->tag_name = $latestVersion && $release->target_commitish == $this->githubBranch ) {
+                    if ( $release->tag_name == $latestVersion && $release->target_commitish == $this->githubBranch ) {
                         // found
                         $this->updateInfo = new \stdClass;
 
