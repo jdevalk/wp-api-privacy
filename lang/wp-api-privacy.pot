@@ -2,22 +2,22 @@
 # This file is distributed under the same license as the WP API Privacy plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP API Privacy 1.1.7\n"
+"Project-Id-Version: WP API Privacy 1.1.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-api-privacy\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-10T18:14:25+00:00\n"
+"POT-Creation-Date: 2024-11-11T23:55:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-api-privacy\n"
 
 #. Plugin Name of the plugin
 #: wp-api-privacy.php
-#: src/settings.php:203
-#: src/settings.php:204
+#: src/settings.php:211
+#: src/settings.php:212
 #: templates/options-page.php:2
 msgid "WP API Privacy"
 msgstr ""
@@ -42,7 +42,7 @@ msgstr ""
 msgid "https://duanestorey.com"
 msgstr ""
 
-#: src/api-privacy.php:50
+#: src/api-privacy.php:51
 msgid "Settings"
 msgstr ""
 
@@ -106,7 +106,11 @@ msgstr ""
 msgid "Disable HTTPs for packet sniffing (should only be used for testing)"
 msgstr ""
 
-#: src/settings.php:71
+#: src/settings.php:65
+msgid "Reset settings to default state (this is destructive, use with care)"
+msgstr ""
+
+#: src/settings.php:72
 msgid "Your settings have been saved"
 msgstr ""
 

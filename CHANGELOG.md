@@ -1,3 +1,9 @@
+### Version 1.1.8 - Nov 11th, 2024
+
+A few minor changes in this release:
+- German and Chinese languages updated (thanks)
+- Modified method for stripping information from core update requests (thanks Matt Radford )
+
 ### Version 1.1.7 - Nov 10th, 2024
 
 - fixed issue with tag comparison
