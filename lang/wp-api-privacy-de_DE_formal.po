@@ -3,21 +3,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP API Privacy 1.1.2\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-api-"
-"privacy\n"
-"POT-Creation-Date: 2024-11-09T07:05:58+00:00\n"
-"PO-Revision-Date: 2024-11-09 12:43+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-api-privacy\n"
+"POT-Creation-Date: 2024-11-10T18:14:25+00:00\n"
+"PO-Revision-Date: 2024-11-11 11:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.5\n"
 "X-Domain: wp-api-privacy\n"
 
 #. Plugin Name of the plugin
-#: wp-api-privacy.php src/settings.php:158 src/settings.php:159
+#: wp-api-privacy.php src/settings.php:203 src/settings.php:204
 #: templates/options-page.php:2
 msgid "WP API Privacy"
 msgstr "WP API Privacy"
@@ -33,8 +33,8 @@ msgid ""
 "Strips potentially identifying information from outbound requests to the "
 "WordPress.org API"
 msgstr ""
-"Entfernt potenziell identifizierende Informationen aus ausgehenden "
-"Anfragen an die WordPress.org-API"
+"Entfernt potenziell identifizierende Informationen aus ausgehenden Anfragen "
+"an die WordPress.org-API"
 
 #. Author of the plugin
 #: wp-api-privacy.php
@@ -46,53 +46,90 @@ msgstr "Duane Storey"
 msgid "https://duanestorey.com"
 msgstr "https://duanestorey.com"
 
+#: src/api-privacy.php:50
+msgid "Settings"
+msgstr "Einstellungen"
+
 #: src/settings.php:31
+msgid "User-Agent URL"
+msgstr "User-Agent-URL"
+
+#: src/settings.php:37
+msgid "No changes"
+msgstr "Keine Änderungen"
+
+#: src/settings.php:38
+msgid "Strip site URL from all WP API requests"
+msgstr "Website-URL bei allen WP-API-Anfragen entfernen"
+
+#: src/settings.php:39
+msgid "Strip site URL from all requests"
+msgstr "Website-URL bei allen Anfragen entfernen"
+
+#: src/settings.php:40
+msgid "Replace URL with a unique hash for all WP API requests"
+msgstr ""
+"Website-URL bei allen WP-API-Anfragen durch einen eindeutigen Hash ersetzen"
+
+#: src/settings.php:41
+msgid "Replace URL with a unique hash for all requests"
+msgstr "Website-URL bei allen Anfragen durch einen eindeutigen Hash ersetzen"
+
+#: src/settings.php:49
 msgid "Options"
 msgstr "Einstellungen"
 
-#: src/settings.php:33
-msgid "Strip site URL from User-Agent header on all requests"
-msgstr "Website-URL bei allen Anfragen aus dem User-Agent-Header entfernen"
+#: src/settings.php:51
+msgid "Strip WordPress version information from User-Agent"
+msgstr "Informationen zur WordPress-Version aus dem User-Agent entfernen"
 
-#: src/settings.php:34
+#: src/settings.php:52
 msgid "Strip external plugins from API calls"
 msgstr "Externe Plugins von API-Aufrufen ausnehmen"
 
-#: src/settings.php:35
+#: src/settings.php:53
 msgid "Strip external themes from API calls"
 msgstr "Externe Themes von API-Aufrufen ausnehmen"
 
-#: src/settings.php:36
+#: src/settings.php:54
 msgid "Modify data sent to core update API"
 msgstr "Daten anpassen, die an die Core-Update-API gesendet werden"
 
-#: src/settings.php:37
+#: src/settings.php:55
 msgid "Strip wp_blog and wp_install headers"
-msgstr "Entfernen der wp_blog- und wp_install-Header"
+msgstr "Die wp_blog- und wp_install-Header entfernen"
 
-#: src/settings.php:38
+#: src/settings.php:56
 msgid "Strip user login info from JSON API"
 msgstr "Benutzeranmeldeinformationen aus der JSON-API entfernen"
 
-#: src/settings.php:44
+#: src/settings.php:62
 msgid "Debug"
 msgstr "Fehlersuche"
 
-#: src/settings.php:46
+#: src/settings.php:64
 msgid "Disable HTTPs for packet sniffing (should only be used for testing)"
 msgstr ""
-" HTTPs für Packet Sniffing deaktivieren (sollte nur für Tests verwendet "
+"HTTPs für Packet Sniffing deaktivieren (sollte nur für Tests verwendet "
 "werden)"
 
-#: src/settings.php:53
+#: src/settings.php:71
 msgid "Your settings have been saved"
-msgstr "Die Einstellungen wurden gespeichert."
+msgstr "Die Einstellungen wurden gespeichert"
 
 #: templates/options-page.php:4
 msgid "You can configure the options for API privacy here."
-msgstr ""
-"Hier können die Optionen für den API-Datenschutz konfigurieren werden."
+msgstr "Hier können die Optionen für den API-Datenschutz konfigurieren werden."
 
-#: templates/options-page.php:27
+#. translators: contains a number indicating the number of requests intercepted
+#: templates/options-page.php:9
+msgid ""
+"The number of API requests that have been modified since activation is: %s"
+msgid_plural ""
+"The number of API requests that have been modified since activation are: %s"
+msgstr[0] "Anzahl der seit Aktivierung geänderten API-Requests: %s"
+msgstr[1] "Anzahl der seit Aktivierung geänderten API-Requests: %s"
+
+#: templates/options-page.php:41
 msgid "Save Changes"
 msgstr "Änderungen speichern"

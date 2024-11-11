@@ -62,6 +62,7 @@ class Settings {
             __( 'Debug', 'wp-api-privacy' ),
            array(
                 $this->addSetting( 'checkbox', 'disable_https', __( 'Disable HTTPs for packet sniffing (should only be used for testing)', 'wp-api-privacy' ) ),
+                $this->addSetting( 'checkbox', 'reset_settings', __( 'Reset settings to default state (this is destructive, use with care)', 'wp-api-privacy' ) ),
            )
         );
     }
@@ -97,7 +98,13 @@ class Settings {
 
                 // Settings are saved, show notification on next page
                 update_option( Settings::UPDATED_KEY, 1, false );
-                $this->saveSettings();
+                if ( isset( $this->settings->reset_settings ) && $this->settings->reset_settings ) {
+                    delete_option( Settings::SETTING_KEY );
+                    $this->settings = null;
+                    $this->loadSettings();
+                } else {
+                    $this->saveSettings();
+                } 
             }
         }
     }
@@ -190,6 +197,7 @@ class Settings {
         $settings->disable_https = false;
 
         $settings->modification_count = 0;
+        $settings->reset_settings = false;
 
         return $settings;
     }
