@@ -23,7 +23,8 @@ class ApiPrivacy extends GithubUpdater {
         // set up our user-agent filter
         add_filter( 'http_request_args', array( $this, 'modifyUserAgent' ), 0, 2 );
         add_filter( 'rest_prepare_user', array( $this, 'modifyRestUser' ), 10, 3 );
-        add_action( 'http_api_curl', array( $this, 'modifyCurl' ), 10, 3 );
+        add_action( 'http_api_curl', array( $this, 'maybeModifyCurl' ), 10, 3 );
+        add_filter( 'core_version_check_query_args', array( $this, 'filterCoreArgs' ) );
 
         // Plugin action links
         add_filter( 'plugin_action_links_' . plugin_basename( PRIVACY_MAIN_FILE ), array( $this, 'addActionLinks' ) );
@@ -53,57 +54,28 @@ class ApiPrivacy extends GithubUpdater {
         return array_merge( $links, $actions );
     }
 
-    public function modifyCurl( $handle, $params, $url ) {
+    public function filterCoreArgs( $args ) {
+        if ( $this->getSetting( 'strip_core_data' ) ) {
+            $this->updateApiModificationCount();
+
+            $removeTags = [ 'blogs', 'users', 'mysql', 'multisite_enabled', 'initial_db_version', 'local_package', 'extensions', 'platform_flags' ];
+            foreach( $removeTags as $tag ) {
+                if ( isset( $args[ $tag ] ) ) unset( $args[ $tag ] ); 
+            }
+        }
+
+        return $args;
+    }
+
+    public function maybeModifyCurl( $handle, $params, $url ) {
         $wasModified = false;
 
         if ( $handle ) {
             if ( $this->getSetting( 'disable_https' ) ) {
                 $url = str_replace( 'https://', 'http://', $url );
-            }
-
-            if ( $this->getSetting( 'strip_core_data' ) && strpos( $url, 'api.wordpress.org/core/version-check' ) !== false ) {
-                $urlData = parse_url( $url );
-                if ( $urlData[ 'query' ] ) {
-                    $queryData = explode( '&', $urlData[ 'query' ] );
-                    $newQueryData = [];
-
-                    foreach( $queryData as $value ) {
-                        if ( ( strpos( $value, 'extensions' ) !== false ) || ( strpos( $value, 'platform_flags' ) !== false ) ) {
-                            continue;
-                        }
-
-                        $params = explode( '=', $value );
-
-                        switch( $params[ 0 ] ) {
-                            case 'version':
-                            case 'php':
-                            case 'locale':
-                                $newQueryData[] = $value;
-                                break;
-                            case 'mysql':
-                            case 'blogs':
-                            case 'users':
-                            case 'multisite_enabled':
-                            case 'initial_db_version':
-                                break;
-                            default:
-                                $newQueryData[] = $value;
-                                break;
-                        }
-
-                        $queryData = implode( '&', $newQueryData );
-                    }
-
-                    $url = $urlData[ 'scheme' ] . '://' . $urlData[ 'host' ] . $urlData[ 'path' ] . '?' . $queryData;
-                }
 
                 curl_setopt( $handle, CURLOPT_URL, $url ); 
-                $wasModified = true;
             }
-        }
-
-        if ( $wasModified ) {
-            $this->updateApiModificationCount();
         }
 
         return $handle;

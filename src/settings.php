@@ -164,7 +164,7 @@ class Settings {
         switch( $setting->type ) {
             case 'checkbox':
                 $checked = ( $this->getSetting( $setting->name ) ? ' checked' : '' );
-                echo '<label for="' . esc_attr( $setting->name ) . '">';
+                echo '<label for="wpsetting_' . esc_attr( $setting->name ) . '">';
                 echo '<input type="checkbox" name="wpsetting_' . esc_attr( $setting->name ) . '" ' . $checked . '/> ';
                 echo '<input type="hidden" name="wpcheckbox_' . esc_attr( $setting->name ) . '" value="1" />';
                 echo esc_html( $setting->desc ) . '</label>';
