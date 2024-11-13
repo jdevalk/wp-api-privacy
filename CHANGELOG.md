@@ -1,3 +1,8 @@
+### Version 1.1.9 - Nov 13th, 2024
+
+- Fixed: Issue with load_plugin_textdomain in WordPress 6.7
+- Added: Turkish language translation (thanks Kerem Erkan)
+
 ### Version 1.1.8 - Nov 11th, 2024
 
 A few minor changes in this release:
