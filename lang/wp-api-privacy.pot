@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-11T23:55:13+00:00\n"
+"POT-Creation-Date: 2024-11-13T17:37:48+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-api-privacy\n"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "https://duanestorey.com"
 msgstr ""
 
-#: src/api-privacy.php:51
+#: src/api-privacy.php:56
 msgid "Settings"
 msgstr ""
 

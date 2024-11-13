@@ -24,7 +24,7 @@
 
 namespace WP_Privacy\WP_API_Privacy;
 
-define( 'PRIVACY_VERSION', '1.1.8' );
+define( 'PRIVACY_VERSION', '1.1.9' );
 define( 'PRIVACY_PATH', dirname( __FILE__ ) );
 define( 'PRIVACY_MAIN_FILE', __FILE__ );
 define( 'PRIVACY_PATH_SRC', dirname( __FILE__ ) . '/src' );
@@ -32,12 +32,9 @@ define( 'PRIVACY_PATH_SRC', dirname( __FILE__ ) . '/src' );
 require_once( dirname( __FILE__ ) . '/src/api-privacy.php' );
 
 function initialize_privacy( $params ) {
-    ApiPrivacy::instance()->init();
+    load_plugin_textdomain( 'wp-api-privacy', false, 'wp-api-privacy/lang/' );
+
+    ApiPrivacy::instance()->init(); 
 }
 
-function load_strings() {
-    $result = load_plugin_textdomain( 'wp-api-privacy', false, dirname( plugin_basename( __FILE__ ) . '/lafng/' ) );
-}
-
-add_action( 'plugins_loaded', __NAMESPACE__ . '\initialize_privacy', 0 );
-add_action( 'init',  __NAMESPACE__ . '\load_strings' );
+add_action( 'init', __NAMESPACE__ . '\initialize_privacy' );
