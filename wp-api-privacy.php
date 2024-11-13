@@ -6,7 +6,7 @@
     Description: Strips potentially identifying information from outbound requests to the WordPress.org API
     Author: Duane Storey
     Author URI: https://duanestorey.com
-    Version: 1.1.8
+    Version: 1.1.9
     Requires PHP: 6.0
     Requires at least: 6.0
     Tested up to: 6.7
