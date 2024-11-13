@@ -21,6 +21,7 @@ class ApiPrivacy extends GithubUpdater {
         $this->settings = new Settings();
 
         // set up our user-agent filter
+        add_filter( 'init', array( $this, 'setupLanguages' ) );
         add_filter( 'http_request_args', array( $this, 'modifyUserAgent' ), 0, 2 );
         add_filter( 'rest_prepare_user', array( $this, 'modifyRestUser' ), 10, 3 );
         add_action( 'http_api_curl', array( $this, 'maybeModifyCurl' ), 10, 3 );
@@ -36,6 +37,10 @@ class ApiPrivacy extends GithubUpdater {
             'wp-api-privacy',
             'main'
         );
+    }
+
+    public function setupLanguages() {
+        load_plugin_textdomain( 'wp-api-privacy', false, '../lang' );
     }
 
     public function init() {

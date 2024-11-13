@@ -32,9 +32,12 @@ define( 'PRIVACY_PATH_SRC', dirname( __FILE__ ) . '/src' );
 require_once( dirname( __FILE__ ) . '/src/api-privacy.php' );
 
 function initialize_privacy( $params ) {
-    load_plugin_textdomain( 'wp-api-privacy', false, 'wp-api-privacy/lang' );
-
     ApiPrivacy::instance()->init();
 }
 
+function load_strings() {
+    $result = load_plugin_textdomain( 'wp-api-privacy', false, dirname( plugin_basename( __FILE__ ) . '/lafng/' ) );
+}
+
 add_action( 'plugins_loaded', __NAMESPACE__ . '\initialize_privacy', 0 );
+add_action( 'init',  __NAMESPACE__ . '\load_strings' );
