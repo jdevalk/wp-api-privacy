@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WP API Privacy 1.1.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-api-privacy\n"
 "POT-Creation-Date: 2024-11-11T23:55:13+00:00\n"
-"PO-Revision-Date: 2024-11-13 18:07+0300\n"
+"PO-Revision-Date: 2024-11-13 18:24+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: tr_TR\n"
@@ -52,7 +52,7 @@ msgstr "Ayarlar"
 
 #: src/settings.php:31
 msgid "User-Agent URL"
-msgstr "User-Agent URL’si"
+msgstr "User-Agent URL bilgisi"
 
 #: src/settings.php:37
 msgid "No changes"
@@ -81,7 +81,7 @@ msgstr "Seçenekler"
 
 #: src/settings.php:51
 msgid "Strip WordPress version information from User-Agent"
-msgstr "User-Agent başlığından WordPress sürüm bilgisini sil"
+msgstr "User-Agent header’ından WordPress sürüm bilgisini sil"
 
 #: src/settings.php:52
 msgid "Strip external plugins from API calls"
