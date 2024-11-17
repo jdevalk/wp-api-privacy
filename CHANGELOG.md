@@ -1,3 +1,7 @@
+### Version 1.2.0 - Nov 17th, 2024
+
+- Updated: improved privacy code for user-agent
+
 ### Version 1.1.9 - Nov 13th, 2024
 
 - Fixed: Issue with load_plugin_textdomain in WordPress 6.7
