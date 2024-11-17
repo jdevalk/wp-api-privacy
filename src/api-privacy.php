@@ -38,11 +38,6 @@ class ApiPrivacy extends GithubUpdater {
         );
     }
 
-/**
-* Performs main initialization
-* 
-* @since  1.1.0
-*/
     public function init() {
         $this->settings->init();
     }

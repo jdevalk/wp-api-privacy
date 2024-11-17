@@ -31,11 +31,6 @@ define( 'PRIVACY_PATH_SRC', dirname( __FILE__ ) . '/src' );
 
 require_once( dirname( __FILE__ ) . '/src/api-privacy.php' );
 
-/**
- * Initializes the main class
- * 
- * @since  1.0.0
- */
 function initialize_privacy( $params ) {
     load_plugin_textdomain( 'wp-api-privacy', false, 'wp-api-privacy/lang/' );
 
