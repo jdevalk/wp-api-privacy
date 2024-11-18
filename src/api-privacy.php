@@ -7,6 +7,11 @@
 
 namespace WP_Privacy\WP_API_Privacy;
 
+// Prevent direct access
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 require_once( PRIVACY_PATH_SRC . '/github-updater.php' );
 require_once( PRIVACY_PATH_SRC . '/settings.php' );
 

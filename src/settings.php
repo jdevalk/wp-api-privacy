@@ -7,10 +7,15 @@
 
 namespace WP_Privacy\WP_API_Privacy;
 
+// Prevent direct access
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 class Settings {
     // The WordPress settings key
-    protected const SETTING_KEY = "wp_api_privacy_settings";
-    protected const UPDATED_KEY = "wp_api_privacy_updated";
+    public const SETTING_KEY = "wp_api_privacy_settings";
+    public const UPDATED_KEY = "wp_api_privacy_updated";
 
     protected $settings = null;
     protected $settingsSections = [];
@@ -214,5 +219,10 @@ class Settings {
             'api-privacy',
             array( $this, 'renderSettingsPage' )
         );   
+    }
+
+    static function deleteAllOptions() {
+        delete_option( Settings::SETTINGS_KEY );
+        delete_option( Settings::UPDATED_KEY );
     }
 }

@@ -24,6 +24,11 @@
 
 namespace WP_Privacy\WP_API_Privacy;
 
+// Prevent direct access
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 define( 'PRIVACY_VERSION', '1.2.0' );
 define( 'PRIVACY_PATH', dirname( __FILE__ ) );
 define( 'PRIVACY_MAIN_FILE', __FILE__ );
@@ -37,4 +42,10 @@ function initialize_privacy( $params ) {
     ApiPrivacy::instance()->init(); 
 }
 
+function handle_uninstall() {
+    // clean up the options table
+    Settings::deleteAllOptions();
+}
+
 add_action( 'init', __NAMESPACE__ . '\initialize_privacy' );
+register_uninstall_hook( __FILE__, __NAMESPACE__ . '\handle_uninstall' );
