@@ -1,3 +1,24 @@
+### Version 1.2.0 - Nov 17th, 2024
+
+- Updated: improved privacy code for user-agent
+
+### Version 1.1.9 - Nov 13th, 2024
+
+- Fixed: Issue with load_plugin_textdomain in WordPress 6.7
+- Added: Turkish language translation (thanks Kerem Erkan)
+
+### Version 1.1.8 - Nov 11th, 2024
+
+A few minor changes in this release:
+- Updated: German and Chinese languages (thanks)
+- Modified: method for stripping information from core update requests (thanks Matt Radford )
+- Added: Persian (Farsi) language (thanks Mohammad Anbarestany)
+
+### Version 1.1.7 - Nov 10th, 2024
+
+- fixed issue with tag comparison
+- added check for main branch only updates
+
 ### Version 1.1.6 - Nov 10th, 2024
 
 - Added: New settings for the user-agent to add a unique hash instead of removing the URL completely

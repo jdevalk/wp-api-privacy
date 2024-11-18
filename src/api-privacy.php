@@ -23,7 +23,8 @@ class ApiPrivacy extends GithubUpdater {
         // set up our user-agent filter
         add_filter( 'http_request_args', array( $this, 'modifyUserAgent' ), 0, 2 );
         add_filter( 'rest_prepare_user', array( $this, 'modifyRestUser' ), 10, 3 );
-        add_action( 'http_api_curl', array( $this, 'modifyCurl' ), 10, 3 );
+        add_action( 'http_api_curl', array( $this, 'maybeModifyCurl' ), 10, 3 );
+        add_filter( 'core_version_check_query_args', array( $this, 'filterCoreArgs' ) );
 
         // Plugin action links
         add_filter( 'plugin_action_links_' . plugin_basename( PRIVACY_MAIN_FILE ), array( $this, 'addActionLinks' ) );
@@ -53,57 +54,28 @@ class ApiPrivacy extends GithubUpdater {
         return array_merge( $links, $actions );
     }
 
-    public function modifyCurl( $handle, $params, $url ) {
+    public function filterCoreArgs( $args ) {
+        if ( $this->getSetting( 'strip_core_data' ) ) {
+            $this->updateApiModificationCount();
+
+            $removeTags = [ 'blogs', 'users', 'mysql', 'multisite_enabled', 'initial_db_version', 'local_package', 'extensions', 'platform_flags' ];
+            foreach( $removeTags as $tag ) {
+                if ( isset( $args[ $tag ] ) ) unset( $args[ $tag ] ); 
+            }
+        }
+
+        return $args;
+    }
+
+    public function maybeModifyCurl( $handle, $params, $url ) {
         $wasModified = false;
 
         if ( $handle ) {
             if ( $this->getSetting( 'disable_https' ) ) {
                 $url = str_replace( 'https://', 'http://', $url );
-            }
-
-            if ( $this->getSetting( 'strip_core_data' ) && strpos( $url, 'api.wordpress.org/core/version-check' ) !== false ) {
-                $urlData = parse_url( $url );
-                if ( $urlData[ 'query' ] ) {
-                    $queryData = explode( '&', $urlData[ 'query' ] );
-                    $newQueryData = [];
-
-                    foreach( $queryData as $value ) {
-                        if ( ( strpos( $value, 'extensions' ) !== false ) || ( strpos( $value, 'platform_flags' ) !== false ) ) {
-                            continue;
-                        }
-
-                        $params = explode( '=', $value );
-
-                        switch( $params[ 0 ] ) {
-                            case 'version':
-                            case 'php':
-                            case 'locale':
-                                $newQueryData[] = $value;
-                                break;
-                            case 'mysql':
-                            case 'blogs':
-                            case 'users':
-                            case 'multisite_enabled':
-                            case 'initial_db_version':
-                                break;
-                            default:
-                                $newQueryData[] = $value;
-                                break;
-                        }
-
-                        $queryData = implode( '&', $newQueryData );
-                    }
-
-                    $url = $urlData[ 'scheme' ] . '://' . $urlData[ 'host' ] . $urlData[ 'path' ] . '?' . $queryData;
-                }
 
                 curl_setopt( $handle, CURLOPT_URL, $url ); 
-                $wasModified = true;
             }
-        }
-
-        if ( $wasModified ) {
-            $this->updateApiModificationCount();
         }
 
         return $handle;
@@ -132,60 +104,53 @@ class ApiPrivacy extends GithubUpdater {
         } else return 'https://' . md5( get_bloginfo( 'url' ) ) . '.com';
     }
 
+    private function removeUrlFromUserAgent( $str ) {
+        if ( strpos( $str, ';' ) !== false ) {
+            $split = explode( ';', $str );
+
+            return $split[ 0 ];
+        }
+    }
+
     public function modifyUserAgent( $params, $url ) {
         $wasModified = false;
+        $isWordPressAPI = ( strpos( $url, 'api.wordpress.org/' ) !== false );
 
-        // Remove site URL from user agent as this is a privacy issue
-        if ( isset( $params[ 'user-agent' ] ) ) {
-            $behaviour = $this->getSetting( 'user_agent_behaviour' );
-            $isWp = ( strpos( $url, 'api.wordpress.org/' ) !== false );
-
-            // check to see if we're stripping the version
-            if ( $this->getSetting( 'strip_wp_version' ) ) {
-                $userAgent = 'WordPress/Private';
-                $wasModified = true;
-            } else {
-                $userAgent = 'WordPress/' . get_bloginfo( 'version' );
-            }
-
-            // check to see what we're doing for URL
-            if ( $behaviour != 'none' ) {
-                switch( $behaviour ) {
-                    case 'strip_wp':
-                        if ( !$isWp ) {
-                            // if it's not WordPress, we need to add the URL back on
-                            $userAgent .= '; ' . get_bloginfo( 'url' );
-                        } else {
-                            $wasModified = true;
-                        }
-                        break;
-                    case 'strip_all':
-                        // no URL provided at all
-                        $wasModified = true;
-                        break;
-                    case 'modify_wp':
-                        if ( $isWp ) {
-                            $userAgent .= '; ' . $this->getUniqueSiteHash();
-                            $wasModified = true;
-                        } else {
-                            // leave in tact for non WordPress
-                            $userAgent .= '; ' . get_bloginfo( 'url' );
-                        }
-                        break;
-                    case 'modify_all':
-                        // Modify it always
-                        $userAgent .= '; ' . $this->getUniqueSiteHash();
-                        $wasModified = true;
-                        break;
-                    default:
-                        break;
-                }
-
-                $params[ 'user-agent' ] = $userAgent;
-            } else {
-                $userAgent .= '; ' . get_bloginfo( 'url' );
-            }
+        if ( $this->getSetting( 'strip_wp_version' ) ) {
+            // remove the version
+            $params[ 'user-agent' ] = str_replace( get_bloginfo( 'version' ), 'Private', $params[ 'user-agent' ] ); 
+            $wasModified = true;
         }
+
+        $behaviour = $this->getSetting( 'user_agent_behaviour' );
+        if ( $behaviour != 'none' ) {
+            switch( $behaviour ) {
+                case 'strip_wp':
+                    if ( $isWordPressAPI ) {
+                        $params[ 'user-agent' ] = $this->removeUrlFromUserAgent( $params[ 'user-agent' ] );
+                        $wasModified = true;
+                    } 
+                    break;
+                case 'strip_all':
+                    // no URL provided at all
+                    $params[ 'user-agent' ] = $this->removeUrlFromUserAgent( $params[ 'user-agent' ] );
+                    $wasModified = true;
+                    break;
+                case 'modify_wp':
+                    if ( $isWordPressAPI ) {
+                        $params[ 'user-agent' ] = $this->removeUrlFromUserAgent( $params[ 'user-agent' ] ) .  '; ' . $this->getUniqueSiteHash();
+                        $wasModified = true;
+                    } 
+                    break;
+                case 'modify_all':
+                    // Modify it always
+                    $params[ 'user-agent' ] = $this->removeUrlFromUserAgent( $params[ 'user-agent' ] ) .  '; ' . $this->getUniqueSiteHash();
+                    $wasModified = true;
+                    break;
+                default:
+                    break;
+            }
+        } 
    
         // Remove plugins hosted off-site, nobody needs to know these - for now this just uses the 'Update URI' parameter
         if ( $this->getSetting( 'strip_plugins' ) && strpos( $url, 'wordpress.org/plugins/update-check/' ) !== false ) {

@@ -2,25 +2,25 @@
 # This file is distributed under the same license as the WP API Privacy plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP API Privacy 1.1.2\n"
+"Project-Id-Version: WP API Privacy 1.1.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-api-privacy\n"
-"POT-Creation-Date: 2024-11-10T18:14:25+00:00\n"
-"PO-Revision-Date: 2024-11-11 11:26+0100\n"
-"Last-Translator: \n"
 "Language-Team: \n"
-"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"POT-Creation-Date: 2024-11-10T02:31:42+00:00\n"
+"PO-Revision-Date: 2024-11-10 21:49+0330\n"
+"X-Generator: Poedit 2.2\n"
 "X-Domain: wp-api-privacy\n"
+"Last-Translator: Mohammad Anbarestany <m_anbarestany@hotmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"Language: fa_IR\n"
 
 #. Plugin Name of the plugin
 #: wp-api-privacy.php src/settings.php:203 src/settings.php:204
 #: templates/options-page.php:2
 msgid "WP API Privacy"
-msgstr "WP API Privacy"
+msgstr "حریم خصوصی برای WP API"
 
 #. Plugin URI of the plugin
 #: wp-api-privacy.php
@@ -33,13 +33,13 @@ msgid ""
 "Strips potentially identifying information from outbound requests to the "
 "WordPress.org API"
 msgstr ""
-"Entfernt potenziell identifizierende Informationen aus ausgehenden Anfragen "
-"an die WordPress.org-API"
+"اطلاعات شناسایی کننده (حساس) از درخواست‌های خروجی به API وبسایت WordPress."
+"org را حذف می کند"
 
 #. Author of the plugin
 #: wp-api-privacy.php
 msgid "Duane Storey"
-msgstr "Duane Storey"
+msgstr "دووئین استوری"
 
 #. Author URI of the plugin
 #: wp-api-privacy.php
@@ -48,78 +48,75 @@ msgstr "https://duanestorey.com"
 
 #: src/api-privacy.php:50
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "تنظیمات"
 
 #: src/settings.php:31
 msgid "User-Agent URL"
-msgstr "User-Agent-URL"
+msgstr "آدرس User-Agent"
 
 #: src/settings.php:37
 msgid "No changes"
-msgstr "Keine Änderungen"
+msgstr "بدون  تغییرات"
 
 #: src/settings.php:38
 msgid "Strip site URL from all WP API requests"
-msgstr "Website-URL bei allen WP-API-Anfragen entfernen"
+msgstr "حذف آدرس سایت از تمام درخواست‌های API وردپرس"
 
 #: src/settings.php:39
 msgid "Strip site URL from all requests"
-msgstr "Website-URL bei allen Anfragen entfernen"
+msgstr "حذف آدرس سایت از تمام درخواست‌ها"
 
 #: src/settings.php:40
 msgid "Replace URL with a unique hash for all WP API requests"
-msgstr ""
-"Website-URL bei allen WP-API-Anfragen durch einen eindeutigen Hash ersetzen"
+msgstr "جایگزینی آدرس با هش یکتا برای تمام درخواست‌های API وردپرس"
 
 #: src/settings.php:41
 msgid "Replace URL with a unique hash for all requests"
-msgstr "Website-URL bei allen Anfragen durch einen eindeutigen Hash ersetzen"
+msgstr "جایگزینی آدرس با هش یکتا برای تمام درخواست‌ها"
 
 #: src/settings.php:49
 msgid "Options"
-msgstr "Einstellungen"
+msgstr "گزینه ها"
 
 #: src/settings.php:51
 msgid "Strip WordPress version information from User-Agent"
-msgstr "Informationen zur WordPress-Version aus dem User-Agent entfernen"
+msgstr "حذف اطلاعات نسخه وردپرس از User-Agent"
 
 #: src/settings.php:52
 msgid "Strip external plugins from API calls"
-msgstr "Externe Plugins von API-Aufrufen ausnehmen"
+msgstr "حذف افزونه‌های خارجی از تماس‌های API"
 
 #: src/settings.php:53
 msgid "Strip external themes from API calls"
-msgstr "Externe Themes von API-Aufrufen ausnehmen"
+msgstr "حذف قالب‌های خارجی از تماس‌های API"
 
 #: src/settings.php:54
 msgid "Modify data sent to core update API"
-msgstr "Daten anpassen, die an die Core-Update-API gesendet werden"
+msgstr "تغییر داده‌های ارسالی به API هسته بروزرسانی"
 
 #: src/settings.php:55
 msgid "Strip wp_blog and wp_install headers"
-msgstr "Die wp_blog- und wp_install-Header entfernen"
+msgstr "حذف هدرهای wp_blog و wp_install"
 
 #: src/settings.php:56
 msgid "Strip user login info from JSON API"
-msgstr "Benutzeranmeldeinformationen aus der JSON-API entfernen"
+msgstr "حذف اطلاعات ورود کاربر از JSON API"
 
 #: src/settings.php:62
 msgid "Debug"
-msgstr "Fehlersuche"
+msgstr "اشکال‌زادیی"
 
 #: src/settings.php:64
 msgid "Disable HTTPs for packet sniffing (should only be used for testing)"
-msgstr ""
-"HTTPs für Packet Sniffing deaktivieren (sollte nur für Tests verwendet "
-"werden)"
+msgstr "غیرفعال کردن HTTPS برای بررسی بسته‌ها (فقط برای آزمایش و بررسی)"
 
 #: src/settings.php:71
 msgid "Your settings have been saved"
-msgstr "Die Einstellungen wurden gespeichert"
+msgstr "تنظیمات شما ذخیره شد"
 
 #: templates/options-page.php:4
 msgid "You can configure the options for API privacy here."
-msgstr "Hier können die Optionen für den API-Datenschutz konfigurieren werden."
+msgstr "شما می‌توانید گزینه‌های حریم خصوصی API را اینجا پیکربندی کنید."
 
 #. translators: contains a number indicating the number of requests intercepted
 #: templates/options-page.php:9
@@ -127,9 +124,9 @@ msgid ""
 "The number of API requests that have been modified since activation is: %s"
 msgid_plural ""
 "The number of API requests that have been modified since activation are: %s"
-msgstr[0] "Anzahl der seit Aktivierung geänderten API-Requests: %s"
-msgstr[1] "Anzahl der seit Aktivierung geänderten API-Requests: %s"
+msgstr[0] "تعداد درخواست‌های API که از زمان فعال‌سازی تغییر کرده‌اند:  %s"
+msgstr[1] "تعداد درخواست‌های API که از زمان فعال‌سازی تغییر کرده است:  %s"
 
 #: templates/options-page.php:41
 msgid "Save Changes"
-msgstr "Änderungen speichern"
+msgstr "ذخیره تغییرات"
