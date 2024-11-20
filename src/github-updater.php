@@ -8,7 +8,7 @@
 namespace WP_Privacy\WP_API_Privacy;
 
 class GitHubUpdater {
-    private const CACHE_TIME = ( 60 * 15 ); // 15 minutes
+    private const CACHE_TIME = ( 60 * 60 ); // 15 minutes
 
     protected $pluginSlug = null;
     protected $githubUser = null;
@@ -36,7 +36,7 @@ class GitHubUpdater {
             // check if the user has manually tried to check all updates at Home/Updates in the WP admin
             if ( is_admin() && strpos( $_SERVER[ 'REQUEST_URI' ], 'update-core.php?force-check=1' ) !== false ) {
                 // Take this out for now, need to think about API considerations
-                // $this->deleteTransients();
+                $this->deleteTransients();
             }
         
             $this->checkForUpdate();
