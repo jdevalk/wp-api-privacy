@@ -121,9 +121,9 @@ class ApiPrivacy extends GithubUpdater {
         $wasModified = false;
 
         $wordPressJetpackUrls = [
-            'api.wordpress.org',
-            'jetpack.wordpress.com',
-            'public-api.wordpress.com'
+            'api.wordpress.org'
+            // 'jetpack.wordpress.com',
+            // 'public-api.wordpress.com'
         ];
         
         $wordPressJetpackUrls = apply_filters( 'api_privacy_wp_urls', $wordPressJetpackUrls );
