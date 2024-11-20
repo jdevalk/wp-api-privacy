@@ -1,3 +1,8 @@
+### Version 1.2.1 - Nov 20th, 2024
+
+- Added: Uninstall hook to clean out settings
+- Modified: Cache time for Github updates
+
 ### Version 1.2.0 - Nov 17th, 2024
 
 - Updated: improved privacy code for user-agent
