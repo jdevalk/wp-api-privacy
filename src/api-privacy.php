@@ -7,6 +7,11 @@
 
 namespace WP_Privacy\WP_API_Privacy;
 
+// Prevent direct access
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 require_once( PRIVACY_PATH_SRC . '/github-updater.php' );
 require_once( PRIVACY_PATH_SRC . '/settings.php' );
 
@@ -114,7 +119,22 @@ class ApiPrivacy extends GithubUpdater {
 
     public function modifyUserAgent( $params, $url ) {
         $wasModified = false;
-        $isWordPressAPI = ( strpos( $url, 'api.wordpress.org/' ) !== false );
+
+        $wordPressJetpackUrls = [
+            'api.wordpress.org'
+            // 'jetpack.wordpress.com',
+            // 'public-api.wordpress.com'
+        ];
+        
+        $wordPressJetpackUrls = apply_filters( 'api_privacy_wp_urls', $wordPressJetpackUrls );
+
+        $isWordPressAPI = false;
+        foreach( $wordPressJetpackUrls as $wpUrl ) {
+            if ( strpos( $url, $wpUrl ) !== false ) {
+                $isWordPressAPI = true;
+                break;
+            }
+        }
 
         if ( $this->getSetting( 'strip_wp_version' ) ) {
             // remove the version
