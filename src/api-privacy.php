@@ -119,7 +119,22 @@ class ApiPrivacy extends GithubUpdater {
 
     public function modifyUserAgent( $params, $url ) {
         $wasModified = false;
-        $isWordPressAPI = ( strpos( $url, 'api.wordpress.org/' ) !== false ) || ( strpos( $url, 'jetpack.wordpress.com/' ) !== false );
+
+        $wordPressJetpackUrls = [
+            'api.wordpress.org',
+            'jetpack.wordpress.com',
+            'public-api.wordpress.com'
+        ];
+        
+        $wordPressJetpackUrls = apply_filters( 'api_privacy_wp_urls', $wordPressJetpackUrls );
+
+        $isWordPressAPI = false;
+        foreach( $wordPressJetpackUrls as $wpUrl ) {
+            if ( strpos( $url, $wpUrl ) !== false ) {
+                $isWordPressAPI = true;
+                break;
+            }
+        }
 
         if ( $this->getSetting( 'strip_wp_version' ) ) {
             // remove the version
