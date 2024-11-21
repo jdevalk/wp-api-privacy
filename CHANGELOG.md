@@ -1,3 +1,8 @@
+### Version 1.2.2 - Nov 21st, 2024
+
+- Updated: Chinese/Taiwain language
+- Fixed: Issue with uninstall options wipe
+
 ### Version 1.2.1 - Nov 20th, 2024
 
 - Added: Uninstall hook to clean out settings
