@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP API Privacy\n"
-"POT-Creation-Date: 2024-11-09 23:59-0800\n"
-"PO-Revision-Date: 2024-11-10 16:11-0800\n"
+"POT-Creation-Date: 2024-11-20 16:33-0800\n"
+"PO-Revision-Date: 2024-11-20 16:47-0800\n"
 "Last-Translator: Alex Lion <learnwithalex@gmail.com>\n"
 "Language-Team: Alex Lion <learnwithalex@gmail.com>\n"
 "Language: zh_TW\n"
@@ -21,76 +21,80 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: src/api-privacy.php:50
+#: src/api-privacy.php:56
 msgid "Settings"
 msgstr "設定"
 
-#: src/settings.php:31
+#: src/settings.php:36
 msgid "User-Agent URL"
 msgstr "使用者代理程式網址"
 
-#: src/settings.php:37
+#: src/settings.php:42
 msgid "No changes"
 msgstr "不變更"
 
-#: src/settings.php:38
+#: src/settings.php:43
 msgid "Strip site URL from all WP API requests"
 msgstr "在全部 WP API 要求中移除網站網址"
 
-#: src/settings.php:39
+#: src/settings.php:44
 msgid "Strip site URL from all requests"
 msgstr "在全部要求中移除網站網址"
 
-#: src/settings.php:40
+#: src/settings.php:45
 msgid "Replace URL with a unique hash for all WP API requests"
 msgstr "以唯一的雜湊值取代全部 WP API 要求的網址"
 
-#: src/settings.php:41
+#: src/settings.php:46
 msgid "Replace URL with a unique hash for all requests"
 msgstr "以唯一的雜湊值取代全部要求的網址"
 
-#: src/settings.php:49
+#: src/settings.php:54
 msgid "Options"
 msgstr "選項"
 
-#: src/settings.php:51
+#: src/settings.php:56
 msgid "Strip WordPress version information from User-Agent"
 msgstr "在使用者代理程式中移除 WordPress 版本資訊"
 
-#: src/settings.php:52
+#: src/settings.php:57
 msgid "Strip external plugins from API calls"
 msgstr "在 API 呼叫中移除外部外掛資訊"
 
-#: src/settings.php:53
+#: src/settings.php:58
 msgid "Strip external themes from API calls"
 msgstr "在 API 呼叫中移除外部佈景主題資訊"
 
-#: src/settings.php:54
+#: src/settings.php:59
 msgid "Modify data sent to core update API"
 msgstr "修改傳送至核心程式更新 API 的資料"
 
-#: src/settings.php:55
+#: src/settings.php:60
 msgid "Strip wp_blog and wp_install headers"
 msgstr "移除 wp_blog 及 wp_install 標頭"
 
-#: src/settings.php:56
+#: src/settings.php:61
 msgid "Strip user login info from JSON API"
 msgstr "在 JSON API 中移除使用者登入資訊"
 
-#: src/settings.php:62
+#: src/settings.php:67
 msgid "Debug"
 msgstr "偵錯"
 
-#: src/settings.php:64
+#: src/settings.php:69
 msgid "Disable HTTPs for packet sniffing (should only be used for testing)"
 msgstr "停用 HTTPS 以進行封包偵測 (僅應用於測試)"
 
-#: src/settings.php:71
+#: src/settings.php:70
+msgid "Reset settings to default state (this is destructive, use with care)"
+msgstr "將外掛設定重設為預設值 (無法復原，請審慎使用)"
+
+#: src/settings.php:77
 msgid "Your settings have been saved"
 msgstr "設定已儲存。"
 
 #. Plugin Name of the plugin/theme
-#: src/settings.php:203 src/settings.php:204 templates/options-page.php:2
+#: src/settings.php:216 src/settings.php:217 templates/options-page.php:2
 msgid "WP API Privacy"
 msgstr "WP API Privacy"
 
