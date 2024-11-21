@@ -222,7 +222,7 @@ class Settings {
     }
 
     static function deleteAllOptions() {
-        delete_option( Settings::SETTINGS_KEY );
-        delete_option( Settings::UPDATED_KEY );
+        delete_option( WP_Privacy\WP_API_Privacy\Settings::SETTING_KEY );
+        delete_option( WP_Privacy\WP_API_Privacy\Settings::UPDATED_KEY );
     }
 }
