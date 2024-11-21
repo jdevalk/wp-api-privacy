@@ -1,0 +1,145 @@
+# Copyright (C) 2024 Duane Storey
+# This file is distributed under the same license as the WP API Privacy plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP API Privacy 1.2.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-api-privacy\n"
+"POT-Creation-Date: 2024-11-21T07:08:39+00:00\n"
+"PO-Revision-Date: 2024-11-21 15:21+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: wp-api-privacy\n"
+
+#. Plugin Name of the plugin
+#: wp-api-privacy.php src/settings.php:216 src/settings.php:217
+#: templates/options-page.php:2
+msgid "WP API Privacy"
+msgstr "WP API Privacy"
+
+#. Plugin URI of the plugin
+#: wp-api-privacy.php
+msgid "https://github.com/wp-privacy/wp-api-privacy"
+msgstr "https://github.com/wp-privacy/wp-api-privacy"
+
+#. Description of the plugin
+#: wp-api-privacy.php
+msgid ""
+"Strips potentially identifying information from outbound requests to the "
+"WordPress.org API"
+msgstr ""
+"Elimina la información de identificación potencial de las solicitudes "
+"salientes a la API de WordPress.org"
+
+#. Author of the plugin
+#: wp-api-privacy.php
+msgid "Duane Storey"
+msgstr "Duane Storey"
+
+#. Author URI of the plugin
+#: wp-api-privacy.php
+msgid "https://duanestorey.com"
+msgstr "https://duanestorey.com"
+
+#: src/api-privacy.php:56
+msgid "Settings"
+msgstr "Ajustes"
+
+#: src/settings.php:36
+msgid "User-Agent URL"
+msgstr "URL del agente de usuario"
+
+#: src/settings.php:42
+msgid "No changes"
+msgstr "Sin cambios"
+
+#: src/settings.php:43
+msgid "Strip site URL from all WP API requests"
+msgstr "Eliminar la URL del sitio de todas las solicitudes de la API de WP"
+
+#: src/settings.php:44
+msgid "Strip site URL from all requests"
+msgstr "Eliminar la URL del sitio de todas las solicitudes"
+
+#: src/settings.php:45
+msgid "Replace URL with a unique hash for all WP API requests"
+msgstr ""
+"Reemplazar la URL con un hash único para todas las solicitudes de la API "
+"de WP"
+
+#: src/settings.php:46
+msgid "Replace URL with a unique hash for all requests"
+msgstr "Reemplazar la URL con un hash único para todas las solicitudes"
+
+#: src/settings.php:54
+msgid "Options"
+msgstr "Opciones"
+
+#: src/settings.php:56
+msgid "Strip WordPress version information from User-Agent"
+msgstr "Eliminar la información de la versión de WordPress del User-Agent"
+
+#: src/settings.php:57
+msgid "Strip external plugins from API calls"
+msgstr "Eliminar los plugins externos de las llamadas a la API"
+
+#: src/settings.php:58
+msgid "Strip external themes from API calls"
+msgstr "Eliminar temas externos de las llamadas a la API"
+
+#: src/settings.php:59
+msgid "Modify data sent to core update API"
+msgstr "Modificar los datos enviados a la API de actualización principal"
+
+#: src/settings.php:60
+msgid "Strip wp_blog and wp_install headers"
+msgstr "Eliminar las cabeceras wp_blog y wp_install"
+
+#: src/settings.php:61
+msgid "Strip user login info from JSON API"
+msgstr ""
+"Eliminar la información de inicio de sesión del usuario de la API JSON"
+
+#: src/settings.php:67
+msgid "Debug"
+msgstr "Depuración"
+
+#: src/settings.php:69
+msgid "Disable HTTPs for packet sniffing (should only be used for testing)"
+msgstr ""
+"Deshabilitar HTTP para el rastreo de paquetes (solo se debe usar para "
+"pruebas)"
+
+#: src/settings.php:70
+msgid "Reset settings to default state (this is destructive, use with care)"
+msgstr ""
+"Restablecer la configuración al estado predeterminado (esto es "
+"destructivo, úsalo con cuidado)"
+
+#: src/settings.php:77
+msgid "Your settings have been saved"
+msgstr "La configuración se ha guardado"
+
+#: templates/options-page.php:4
+msgid "You can configure the options for API privacy here."
+msgstr "Puedes configurar las opciones para la privacidad de la API aquí."
+
+#. translators: contains a number indicating the number of requests intercepted
+#: templates/options-page.php:9
+msgid ""
+"The number of API requests that have been modified since activation is: %s"
+msgid_plural ""
+"The number of API requests that have been modified since activation are: %s"
+msgstr[0] ""
+"El número de solicitudes de API que se han modificado desde la activación "
+"es: %s"
+msgstr[1] ""
+
+#: templates/options-page.php:41
+msgid "Save Changes"
+msgstr "Guardar cambios"
