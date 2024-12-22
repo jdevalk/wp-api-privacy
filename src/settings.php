@@ -111,7 +111,7 @@ class Settings {
                     $this->saveSettings();
                 } 
             }
-        }
+        } 
     }
 
     public function saveSettings() {
