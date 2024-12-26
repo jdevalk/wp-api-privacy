@@ -118,9 +118,9 @@ class GitHubUpdater {
 
                 $transient->response[ $response->plugin ] = $response;
             }
-
-            return $transient;
         }
+        
+        return $transient;
     }
 
     protected function hasValidInfo() {
