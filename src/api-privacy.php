@@ -136,7 +136,7 @@ class ApiPrivacy extends GithubUpdater {
             }
         }
 
-        if ( $this->getSetting( 'strip_wp_version' ) ) {
+        if ( $this->getSetting( 'strip_wp_version' ) && ! empty( $params[ 'user-agent' ] ) ) {
             // remove the version
             $params[ 'user-agent' ] = str_replace( get_bloginfo( 'version' ), 'Private', $params[ 'user-agent' ] ); 
             $wasModified = true;
