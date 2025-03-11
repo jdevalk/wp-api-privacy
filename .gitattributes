@@ -1,4 +1,4 @@
-assets/* export-ignore
+assets export-ignore
 .gitattributes export-ignore
 .github/* export-ignore
 .gitignore export-ignore
